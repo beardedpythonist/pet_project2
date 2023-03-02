@@ -26,10 +26,10 @@ def about(request):
 
 def addpage(request):
     form = AddPostForm()
-    return render(request, 'women/addpage.html', {'menu': menu, 'form': form, 'title': 'добавить статью'})
+    return render(request, 'women/single-post.html', {'menu': menu, 'form': form, 'title': 'добавить статью'})
 
 def contact(request):
-    return HttpResponse('Обратная связь')
+    return render(request, 'women/contact.html')
 
 def login(request):
     return HttpResponse('Авторизация')
