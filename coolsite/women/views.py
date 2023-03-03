@@ -36,7 +36,7 @@ def login(request):
 
 
 def show_category(request, cat_id):
-    post = Women.objects.filter(cat=cat_id)
+    post = Women.objects.filter(cat_id=cat_id)
     cats = Category.objects.all()
     if len(post) == 0:
         raise Http404()
@@ -46,6 +46,7 @@ def show_category(request, cat_id):
                'cats': cats,
                'title5': 'отображение по рубрикам',
                'cat_selected': cat_id}
+
     return render(request, 'women/index.html', context=context)
 
 
