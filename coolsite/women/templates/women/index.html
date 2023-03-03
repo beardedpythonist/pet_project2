@@ -273,13 +273,22 @@
     </section> <!-- End Post Grid Section -->
 
     <!-- ======= Culture Category Section ======= -->
+
     <section class="category-section">
+
       <div class="container" data-aos="fade-up">
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
-          <h2>Culture</h2>
-          <div><a href="category.html" class="more">See All Culture</a></div>
-        </div>
+
+          {% for cat in cats %}
+          {% if cat.pk == 1 %}
+
+          <h2>{{cat.name}}</h2>
+          <div><a href="{% url 'category' cat.pk %}" class="more">{{cat.name}}</a></div>
+          {%  endif %}
+          {% endfor %}
+                   </div>
+
 
         <div class="row">
           <div class="col-md-9">
@@ -370,13 +379,21 @@
       </div>
     </section><!-- End Culture Category Section -->
 
+
+
     <!-- ======= Business Category Section ======= -->
     <section class="category-section">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
-          <h2>Business</h2>
-          <div><a href="category.html" class="more">See All Business</a></div>
+            {% for cat in cats %}
+            {% if cat.pk == 2 %}
+
+            <h2>{{cat.name}}</h2>
+            <div><a href="{% url 'category' cat.pk %}" class="more">{{cat.name}}</a></div>
+
+                    {%  endif %}
+            {% endfor %}
         </div>
 
         <div class="row">
@@ -472,8 +489,23 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
-          <h2>Lifestyle</h2>
-          <div><a href="category.html" class="more">See All Lifestyle</a></div>
+
+           {% for cat in cats %}
+            {% if cat.pk == 3 %}
+
+            <h2>{{cat.name}}</h2>
+            <div><a href="{% url 'category' cat.pk %}" class="more">{{cat.name}}</a></div>
+
+                    {%  endif %}
+            {% endfor %}
+
+
+
+
+
+
+
+
         </div>
 
         <div class="row g-5">
