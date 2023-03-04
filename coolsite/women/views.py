@@ -12,13 +12,11 @@ menu = [{'title': 'О сайте', 'url_name': 'about'},
 def index11(request):
     post = Women.objects.all()
     cats = Category.objects.all()
-    last_pages = Women.objects.order_by('?')[0:2]
     context = {'post': post,
                'menu': menu,
                'cats': cats,
                'title5': 'Главная страница))))))',
-               'cat_selected': 0,
-               'last_pages': last_pages}
+               'cat_selected': 0,}
 
     return render(request, 'women/index.html', context=context)
 
@@ -50,7 +48,7 @@ def show_category(request, cat_id):
                'title5': 'отображение по рубрикам',
                'cat_selected': cat_id}
 
-    return render(request, 'women/index.html', context=context)
+    return render(request, 'women/category.html', context=context)
 
 
 
