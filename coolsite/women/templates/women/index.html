@@ -287,15 +287,14 @@
 
             <div class="d-lg-flex post-entry-2">
               <a href="single-post.html" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
-                <img src="{%  static  'assets/img/post-landscape-6.jpg' %} " alt="" class="img-fluid">
+                <img src="{%  static 'assets/img/post-landscape-6.jpg' %} " alt="" class="img-fluid">
               </a>
               <div>
-                {% for p in post%}
-
-                {% if p.pk == 1 %}
+                {% for p in post|slice:":1" %}
+                {% if p.cat.pk ==  1  %}
                 <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span> {{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
                 <h3><a href="single-post.html">{{p.title}} </a></h3>
-                <p>{{p.content | linebreaks | truncatewords:100}}</p>
+                <p>{{p.content | linebreaks | truncatewords:50}}</p>
                 {% endif %}
                 {% endfor %}
 
@@ -307,15 +306,16 @@
                 </div>
               </div>
             </div>
-
+               {% for p in post|slice:"2:3" %}
+            {% if p.cat.pk ==  1  %}
             <div class="row">
               <div class="col-lg-4">
                 <div class="post-entry-1 border-bottom">
-                  <a href="single-post.html"><img src="{% static 'assets/img/post-landscape-1 .jpg' %} " alt="" class="img-fluid"></a>
+                  <a href="single-post.html"><img src="{% static 'assets/img/post-landscape-1.jpg' %} " alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
-                  <h2 class="mb-2"><a href="single-post.html">11 Work From Home Part-Time Jobs You Can Do Now</a></h2>
+                  <h2 class="mb-2"><a href="single-post.html"> {{p.title }} </a></h2>
                   <span class="author mb-3 d-block">Jenny Wilson</span>
-                  <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>
+                  <p class="mb-4 d-block">{{p.content | linebreaks | truncatewords:20}} </p>
                 </div>
 
                 <div class="post-entry-1">
@@ -326,7 +326,7 @@
               </div>
               <div class="col-lg-8">
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="{%  static  ' assets/img/post-landscape-2.jpg' %}" alt="" class="img-fluid"></a>
+                  <a href="single-post.html"><img src="{%  static  'assets/img/post-landscape-2.jpg' %}" alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
                   <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
                   <span class="author mb-3 d-block">Jenny Wilson</span>
@@ -335,44 +335,51 @@
               </div>
             </div>
           </div>
+          {% endif %}
+          {% endfor %}
 <!--        узкая колонка -->
 
           <div class="col-md-3">
+            {% for p in post %}
+            {% if p.cat.pk == 1 and  forloop.counter < 6 %}
             <div class="post-entry-1 border-bottom">
               <div class="post-meta"><span class="date">{{cat.name}} </span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
-              <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
-            </div>
+              <h2 class="mb-2"><a href="single-post.html">{{ p.title  }} {{ forloop.revcounter }}</a></h2>
+              <span class="author mb-3 d-block"> {{ p.content | linebreaks | truncatewords:10 }}</span>
 
-            <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">{{cat.name}} </span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
-              <h2 class="mb-2"><a href="single-post.html">17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
             </div>
+            {% endif %}
+            {%  endfor %}
 
-            <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }}</span></div>
-              <h2 class="mb-2"><a href="single-post.html">9 Half-up/half-down Hairstyles for Long and Medium Hair</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
-            </div>
+<!--            <div class="post-entry-1 border-bottom">-->
+<!--              <div class="post-meta"><span class="date">{{cat.name}} </span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>-->
+<!--              <h2 class="mb-2"><a href="single-post.html">17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</a></h2>-->
+<!--              <span class="author mb-3 d-block">Jenny Wilson</span>-->
+<!--            </div>-->
 
-            <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }}</span></div>
-              <h2 class="mb-2"><a href="single-post.html">Life Insurance And Pregnancy: A Working Mom’s Guide</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
-            </div>
+<!--            <div class="post-entry-1 border-bottom">-->
+<!--              <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }}</span></div>-->
+<!--              <h2 class="mb-2"><a href="single-post.html">9 Half-up/half-down Hairstyles for Long and Medium Hair</a></h2>-->
+<!--              <span class="author mb-3 d-block">Jenny Wilson</span>-->
+<!--            </div>-->
 
-            <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
-              <h2 class="mb-2"><a href="single-post.html">The Best Homemade Masks for Face (keep the Pimples Away)</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
-            </div>
+<!--            <div class="post-entry-1 border-bottom">-->
+<!--              <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }}</span></div>-->
+<!--              <h2 class="mb-2"><a href="single-post.html">Life Insurance And Pregnancy: A Working Mom’s Guide</a></h2>-->
+<!--              <span class="author mb-3 d-block">Jenny Wilson</span>-->
+<!--            </div>-->
 
-            <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
-              <h2 class="mb-2"><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>
-              <span class="author mb-3 d-block">Jenny Wilson</span>
-            </div>
+<!--            <div class="post-entry-1 border-bottom">-->
+<!--              <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>-->
+<!--              <h2 class="mb-2"><a href="single-post.html">The Best Homemade Masks for Face (keep the Pimples Away)</a></h2>-->
+<!--              <span class="author mb-3 d-block">Jenny Wilson</span>-->
+<!--            </div>-->
+
+<!--            <div class="post-entry-1 border-bottom">-->
+<!--              <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>-->
+<!--              <h2 class="mb-2"><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>-->
+<!--              <span class="author mb-3 d-block">Jenny Wilson</span>-->
+<!--            </div>-->
           </div>
         </div>
 

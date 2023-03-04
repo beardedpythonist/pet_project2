@@ -12,11 +12,14 @@ menu = [{'title': 'О сайте', 'url_name': 'about'},
 def index11(request):
     post = Women.objects.all()
     cats = Category.objects.all()
+    last_pages = Women.objects.order_by('-time_update')[0:5]
     context = {'post': post,
                'menu': menu,
                'cats': cats,
                'title5': 'Главная страница))))))',
-               'cat_selected':0}
+               'cat_selected': 0,
+               'last_pages': last_pages}
+
     return render(request, 'women/index.html', context=context)
 
 

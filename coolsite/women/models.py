@@ -14,7 +14,7 @@ class Women(models.Model):
 
     class Meta:
         verbose_name_plural = 'Известные женщины'
-        ordering = ('title', )
+        ordering = ('-time_update', 'title')
 
 
     def __str__(self):
