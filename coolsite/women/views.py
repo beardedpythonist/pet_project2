@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .forms import AddPostForm
+from .forms import *
 from .models import *
 
 menu = [{'title': 'О сайте', 'url_name': 'about'},
@@ -25,12 +25,30 @@ def about(request):
     return render(request, 'women/about.html', {'menu': menu})
 
 
-def addpage(request):
+def add_page(request):
+    if request.method == "POST":
+        form =AddPostForm(request.POST)
+        if form.is_valid():
+            print(form.cleaned_data)
+            try:
+                Women.objects.create(**form.cleaned_data)
+                return redirect('home')
+            except:
+                form.add_error(None, "Ошибка")
+        # else:
+        #     # form =AddPostForm()
+
     form = AddPostForm()
-    return render(request, 'women/single-post.html', {'menu': menu, 'form': form, 'title': 'добавить статью'})
+    return render(request, 'women/addpage.html', {'menu': menu, 'form': form, 'title': 'добавить статью'})
 
 def contact(request):
     return render(request, 'women/contact.html')
+
+
+def search(request):
+    return render(request, 'women/search-result.html')
+
+
 
 def login(request):
     return HttpResponse('Авторизация')
@@ -61,7 +79,7 @@ def show_post(request, post_slug):
                    'cats': cats,
                    'title5': post.title,
                    'cat_selected': post.cat_id}
-        return render(request, 'women/post.html', context)
+        return render(request, 'women/single-post.html', context)
 
 
 def pageNotFound(request, exception):
