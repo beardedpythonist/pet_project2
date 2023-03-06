@@ -273,17 +273,21 @@
 <!--    </section> &lt;!&ndash; End Post Grid Section &ndash;&gt;-->
 
     <!-- ======= Culture Category Section ======= -->
+          {%  for p  in post  %}
+                {{ p.cat.name }}
+               {% endfor %}
+
 
     <section class="category-section">
 
       <div class="container" data-aos="fade-up">
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
-
-          {% for cat in cats %}
-          {% if cat.pk == 1 %}
+            {% for cat in cats %}
+           {% if cat.pk == 1 %}
 
           <h2>{{cat.name}}</h2>
+
           <div><a href="{% url 'category' cat.pk %}" class="more">{{cat.name}}</a></div>
 
                    </div>
