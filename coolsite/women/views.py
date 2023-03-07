@@ -23,10 +23,11 @@ class WomenHome(DataMixin, ListView):
         context = super().get_context_data(**kwargs)
         c_def = self.get_user_context(title='Главная страница')
         context = dict(list(context.items()) + list(c_def.items()))
+        context['cats'] = Category.objects.all()
         return context
 
 
-class Category(DataMixin, ListView):
+class CategoryListView(DataMixin, ListView):
     model = Category
     template_name = 'women/category.html'
     context_object_name = 'cats'
@@ -34,8 +35,12 @@ class Category(DataMixin, ListView):
     def get_queryset(self):
         return Women.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
 
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['cats'] = Category.objects.all()
+
+
         return context
 
 
@@ -47,6 +52,8 @@ class ShowPost(DataMixin, DetailView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['cats'] = Category.objects.all()
+
         return context
 
 

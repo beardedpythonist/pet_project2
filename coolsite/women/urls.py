@@ -9,5 +9,5 @@ urlpatterns = [path('', WomenHome.as_view(), name='home'),
                path('contact/', contact, name='contact'),
                path('post/<slug:post_slug>/', ShowPost.as_view(), name='post'),
                path('search-result.html', search, name='search'),
-               path('cats/<slug:cat_slug>/', Category.as_view(), name='category'),
+               path('cats/<slug:cat_slug>/', CategoryListView.as_view(), name='category'),
                ]

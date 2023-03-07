@@ -54,9 +54,13 @@
 
   <main id="main">
 
+            {% for cat in cats %}
+              {{  cat.name  }}
+            {%  endfor  %}
+
     <section>
         <h3>   {% for cat in cats|slice:"1"  %}
-              {{ cat.cat.name }}
+                   {{ cat.name }}
                   {% endfor %}
         </h3>
        {% for cat in cats %}
