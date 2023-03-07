@@ -1,6 +1,4 @@
 {% load static  %}
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -42,241 +40,11 @@
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-      <a href="{% url 'home' %}" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-      <img src="{% static 'assets/img/logo.png' %}" alt="">
-        <h1>Мой лучший блог </h1>
-      </a>
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="search-result.html"> Поиск </a></li>
-          <li><a href="{% url 'add_page' %}"> Начать новый блог </a></li>
-          <li class="dropdown"><a href="{% url 'home' %}"><span> Категории </span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              {% for cat in cats               %}
-              <li><a href="{% url 'category' cat.pk %}"> {{cat.name }}</a></li>
-
-<!--              <li><a href="#">Drop Down 2</a></li>-->
-<!--              <li><a href="#">Drop Down 3</a></li>-->
-<!--              <li><a href="#">Drop Down 4</a></li>-->
-              {% endfor %}
-            </ul>
-          </li>
-
-          <li><a href="{% url 'register' %}"> Регистрация </a></li>
-          <li><a href="{% url 'login' %}"> Войти </a></li>
-        </ul>
-      </nav><!-- .navbar -->
-
-      <div class="position-relative">
-        <a href="#" class="mx-2"><span class="bi-facebook"></span></a>
-        <a href="#" class="mx-2"><span class="bi-twitter"></span></a>
-        <a href="#" class="mx-2"><span class="bi-instagram"></span></a>
-
-        <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-
-        <!-- ======= Search Form ======= -->
-        <div class="search-form-wrap js-search-form-wrap">
-          <form action="search-result.html" class="search-form">
-            <span class="icon bi-search"></span>
-            <input type="text" placeholder="Search" class="form-control">
-            <button class="btn js-search-close"><span class="bi-x"></span></button>
-          </form>
-        </div><!-- End Search Form -->
-
-      </div>
-
-    </div>
-
-  </header><!-- End Header -->
-
+ {% include "women/header.html" %}
   <main id="main">
 
-    <!-- ======= Hero Slider Section ======= -->
-
-<!--    <section id="hero-slider" class="hero-slider">-->
-<!--      <div class="container-md" data-aos="fade-in">-->
-<!--        <div class="row">-->
-<!--          <div class="col-12">-->
-<!--            <div class="swiper sliderFeaturedPosts">-->
-<!--              <div class="swiper-wrapper">-->
-<!--                <div class="swiper-slide">-->
-
-<!--                  <a href="single-post.html" class="img-bg d-flex align-items-end"-->
-<!--                     style="background-image: url('{% static 'assets/img/post-slide-1.jpg' %} ');">-->
-<!--                    <div class="img-bg-inner">-->
-<!--                      <h2>The Best Homemade Masks for Face (keep the Pimples Away)</h2>-->
-<!--                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>-->
-<!--                    </div>-->
-<!--                  </a>-->
-<!--                </div>-->
-
-<!--                <div class="swiper-slide">-->
-<!--                  <a href="single-post.html"-->
-<!--                     class="img-bg d-flex align-items-end"-->
-<!--                     style="background-image: url(' {% static 'assets/img/post-slide-2.jpg' %} ');">-->
-<!--                    <div class="img-bg-inner">-->
-<!--                      <h2>17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</h2>-->
-<!--                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>-->
-<!--                    </div>-->
-<!--                  </a>-->
-<!--                </div>-->
-
-<!--                <div class="swiper-slide">-->
-<!--                  <a href="single-post.html" class="img-bg d-flex align-items-end"-->
-<!--                     style="background-image: url(' {% static 'assets/img/post-slide-3.jpg' %} ');">-->
-<!--                    <div class="img-bg-inner">-->
-<!--                      <h2>13 Amazing Poems from Shel Silverstein with Valuable Life Lessons</h2>-->
-<!--                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>-->
-<!--                    </div>-->
-<!--                  </a>-->
-<!--                </div>-->
-
-<!--                <div class="swiper-slide">-->
-<!--                  <a href="single-post.html"-->
-<!--                     class="img-bg d-flex align-items-end" style="background-image: url('  {% static 'assets/img/post-slide-4.jpg' %} ');">-->
-<!--                    <div class="img-bg-inner">-->
-<!--                      <h2>9 Half-up/half-down Hairstyles for Long and Medium Hair</h2>-->
-<!--                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem neque est mollitia! Beatae minima assumenda repellat harum vero, officiis ipsam magnam obcaecati cumque maxime inventore repudiandae quidem necessitatibus rem atque.</p>-->
-<!--                    </div>-->
-<!--                  </a>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="custom-swiper-button-next">-->
-<!--                <span class="bi-chevron-right"></span>-->
-<!--              </div>-->
-<!--              <div class="custom-swiper-button-prev">-->
-<!--                <span class="bi-chevron-left"></span>-->
-<!--              </div>-->
-
-<!--              <div class="swiper-pagination"></div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </section>&lt;!&ndash; End Hero Slider Section &ndash;&gt;-->
-
-<!--    &lt;!&ndash; ======= Post Grid Section ======= &ndash;&gt;-->
-<!--    <section id="posts" class="posts">-->
-<!--      <div class="container" data-aos="fade-up">-->
-<!--        <div class="row g-5">-->
-<!--          <div class="col-lg-4">-->
-<!--            <div class="post-entry-1 lg">-->
-<!--              <a href="single-post.html"><img src="{%  static  'assets/img/post-landscape-1.jpg' %} " alt="" class="img-fluid"></a>-->
-<!--              <div class="post-meta"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>-->
-<!--              <h2><a href="single-post.html">11 Work From Home Part-Time Jobs You Can Do Now</a></h2>-->
-<!--              <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus exercitationem? Nihil tempore odit ab minus eveniet praesentium, similique blanditiis molestiae ut saepe perspiciatis officia nemo, eos quae cumque. Accusamus fugiat architecto rerum animi atque eveniet, quo, praesentium dignissimos</p>-->
-
-<!--              <div class="d-flex align-items-center author">-->
-<!--                <div class="photo"><img src=" {%  static  'assets/img/person-1.jpg' %} " alt="" class="img-fluid"></div>-->
-<!--                <div class="name">-->
-<!--                  <h3 class="m-0 p-0">Cameron Williamson</h3>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-
-<!--          </div>-->
-
-<!--          <div class="col-lg-8">-->
-<!--            <div class="row g-5">-->
-<!--              <div class="col-lg-4 border-start custom-border">-->
-<!--                <div class="post-entry-1">-->
-<!--                  <a href="single-post.html"><img src="{%  static  'assets/img/post-landscape-2.jpg' %} " alt="" class="img-fluid"></a>-->
-<!--                  <div class="post-meta"><span class="date">Sport</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>-->
-<!--                  <h2><a href="single-post.html">Let’s Get Back to Work, New York</a></h2>-->
-<!--                </div>-->
-<!--                <div class="post-entry-1">-->
-<!--                  <a href="single-post.html"><img src=" {%  static  'assets/img/post-landscape-5.jpg' %} " alt="" class="img-fluid"></a>-->
-<!--                  <div class="post-meta"><span class="date">Food</span> <span class="mx-1">&bullet;</span> <span>Jul 17th '22</span></div>-->
-<!--                  <h2><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>-->
-<!--                </div>-->
-<!--                <div class="post-entry-1">-->
-<!--                  <a href="single-post.html"><img src="{%  static  'assets/img/post-landscape-7.jpg' %} " alt="" class="img-fluid"></a>-->
-<!--                  <div class="post-meta"><span class="date">Design</span> <span class="mx-1">&bullet;</span> <span>Mar 15th '22</span></div>-->
-<!--                  <h2><a href="single-post.html">Why Craigslist Tampa Is One of The Most Interesting Places On the Web?</a></h2>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="col-lg-4 border-start custom-border">-->
-<!--                <div class="post-entry-1">-->
-<!--                  <a href="single-post.html"><img src="{%  static  'assets/img/post-landscape-3.jpg' %} " alt="" class="img-fluid"></a>-->
-<!--                  <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>-->
-<!--                  <h2><a href="single-post.html">6 Easy Steps To Create Your Own Cute Merch For Instagram</a></h2>-->
-<!--                </div>-->
-<!--                <div class="post-entry-1">-->
-<!--                  <a href="single-post.html"><img src="{%  static  'assets/img/post-landscape-6.jpg' %} " alt="" class="img-fluid"></a>-->
-<!--                  <div class="post-meta"><span class="date">Tech</span> <span class="mx-1">&bullet;</span> <span>Mar 1st '22</span></div>-->
-<!--                  <h2><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>-->
-<!--                </div>-->
-<!--                <div class="post-entry-1">-->
-<!--                  <a href="single-post.html"><img src=" {%  static  'assets/img/post-landscape-8.jpg' %} " alt="" class="img-fluid"></a>-->
-<!--                  <div class="post-meta"><span class="date">Travel</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>-->
-<!--                  <h2><a href="single-post.html">5 Great Startup Tips for Female Founders</a></h2>-->
-<!--                </div>-->
-<!--              </div>-->
-
-<!--              &lt;!&ndash; Trending Section &ndash;&gt;-->
-<!--              <div class="col-lg-4">-->
-
-<!--                <div class="trending">-->
-<!--                  <h3>Trending</h3>-->
-<!--                  <ul class="trending-post">-->
-<!--                    <li>-->
-<!--                      <a href="single-post.html">-->
-<!--                        <span class="number">1</span>-->
-<!--                        <h3>The Best Homemade Masks for Face (keep the Pimples Away)</h3>-->
-<!--                        <span class="author">Jane Cooper</span>-->
-<!--                      </a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                      <a href="single-post.html">-->
-<!--                        <span class="number">2</span>-->
-<!--                        <h3>17 Pictures of Medium Length Hair in Layers That Will Inspire Your New Haircut</h3>-->
-<!--                        <span class="author">Wade Warren</span>-->
-<!--                      </a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                      <a href="single-post.html">-->
-<!--                        <span class="number">3</span>-->
-<!--                        <h3>13 Amazing Poems from Shel Silverstein with Valuable Life Lessons</h3>-->
-<!--                        <span class="author">Esther Howard</span>-->
-<!--                      </a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                      <a href="single-post.html">-->
-<!--                        <span class="number">4</span>-->
-<!--                        <h3>9 Half-up/half-down Hairstyles for Long and Medium Hair</h3>-->
-<!--                        <span class="author">Cameron Williamson</span>-->
-<!--                      </a>-->
-<!--                    </li>-->
-<!--                    <li>-->
-<!--                      <a href="single-post.html">-->
-<!--                        <span class="number">5</span>-->
-<!--                        <h3>Life Insurance And Pregnancy: A Working Mom’s Guide</h3>-->
-<!--                        <span class="author">Jenny Wilson</span>-->
-<!--                      </a>-->
-<!--                    </li>-->
-<!--                  </ul>-->
-<!--                </div>-->
-
-<!--              </div> &lt;!&ndash; End Trending Section &ndash;&gt;-->
-<!--            </div>-->
-<!--          </div>-->
-
-<!--        </div> &lt;!&ndash; End .row &ndash;&gt;-->
-<!--      </div>-->
-<!--    </section> &lt;!&ndash; End Post Grid Section &ndash;&gt;-->
 
     <!-- ======= Culture Category Section ======= -->
-          {%  for p  in post  %}
-                {{ p.cat.name }}
-               {% endfor %}
-
 
     <section class="category-section">
 
@@ -288,7 +56,7 @@
 
           <h2>{{cat.name}}</h2>
 
-          <div><a href="{% url 'category' cat.pk %}" class="more">{{cat.name}}</a></div>
+          <div><a href="{% url 'category' cat.slug %}" class="more">{{cat.name}}</a></div>
 
                    </div>
 
@@ -329,7 +97,7 @@
                   <div class="post-meta"><span class="date">{{cat.name}}</span>
                     <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
                   <h2 class="mb-2"><a href="{% url 'post' p.slug  %}"> {{p.title }} </a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <span class="author mb-3 d-block">Горемыкин   </span>
                   <p class="mb-4 d-block">{{p.content | linebreaks | truncatewords:20}} </p>
                 </div>
 
@@ -339,7 +107,7 @@
                   <div class="post-meta"><span
                           class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
                   <h2 class="mb-2"><a href="{% url 'post' p.slug  %}">{{p.title }}</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <span class="author mb-3 d-block">Пилюлин</span>
                 </div>
                 {% endif %}
                 {%  endfor %}
@@ -353,7 +121,7 @@
                   <div class="post-meta"><span class="date">{{cat.name}}</span>
                     <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
                   <h2 class="mb-2"><a href="{% url 'post' p.slug  %}"></a>{{p.title }}</h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <span class="author mb-3 d-block"> Автор такой то... </span>
                   <p class="mb-4 d-block">{{p.content | linebreaks | truncatewords:20}}</p>
                 </div>
               </div>
@@ -392,23 +160,24 @@
     <!-- ======= Business Category Section ======= -->
 
     <section class="category-section">
-  {% for cat in cats %}
-            {% if cat.pk == 2 %}
+
       <div class="container" data-aos="fade-up">
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
-
+                    {% for cat in cats %}
+                              {% if cat.pk == 2 %}
 
             <h2>{{cat.name}}</h2>
-            <div><a href="{% url 'category' cat.pk %}" class="more">{{cat.name}}</a></div>
+            <div><a href="{% url 'category' cat.slug %}" class="more">{{cat.name}}</a></div>
 
 
+                    {% for p in post %}
+                {% if p.cat.pk ==  2  %}
 
         </div>
 <!--            первая картинка во втором  диве (большая  колонка)&ndash;&gt;-->
 
-                  {% for p in post %}
-                {% if p.cat.pk ==  2  %}
+
 
         <div class="row">
           <div class="col-md-9 order-md-2">
@@ -418,52 +187,16 @@
                 <img src="{{ p.photo.url }} " alt="" class="img-fluid">
               </a>
               <div>
-                <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
+                <div class="post-meta"><span class="date">{{cat.name}}</span>
+                    <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
                 <h3><a href="{% url 'post' p.slug  %}">{{ p.title }}</a></h3>
                 <p> {{ p.content | linebreaks | truncatewords:20}} </p>
+                                                 {% endif %}
+                                              {% endfor %}
 
-                        {% endif %}
-                        {% endfor %}
-<!--                <div class="d-flex align-items-center author">-->
-<!--                  <div class="photo"><img src="{%  static  ' assets/img/person-4.jpg' %}" alt="" class="img-fluid"></div>-->
-<!--                  <div class="name">-->
-<!--                    <h3 class="m-0 p-0">Wade Warren</h3>-->
-<!--                  </div>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-
-<!--            <div class="row">-->
-<!--              <div class="col-lg-4">-->
-<!--                <div class="post-entry-1 border-bottom">-->
-<!--                  <a href="single-post.html"><img src="{%  static  'assets/img/post-landscape-5.jpg' %} " alt="" class="img-fluid"></a>-->
-<!--                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }}</span></div>-->
-<!--                  <h2 class="mb-2"><a href="single-post.html">11 Work From Home Part-Time Jobs You Can Do Now</a></h2>-->
-<!--                  <span class="author mb-3 d-block">Jenny Wilson</span>-->
-<!--                  <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>-->
-<!--                </div>-->
-
-<!--                <div class="post-entry-1">-->
-<!--                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>-->
-<!--                  <h2 class="mb-2"><a href="single-post.html">5 Great Startup Tips for Female Founders</a></h2>-->
-<!--                  <span class="author mb-3 d-block">Jenny Wilson</span>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--              <div class="col-lg-8">-->
-<!--                <div class="post-entry-1">-->
-<!--                  <a href="single-post.html"><img src="{%  static  'assets/img/post-landscape-7.jpg' %} " alt="" class="img-fluid"></a>-->
-<!--                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>-->
-<!--                  <h2 class="mb-2"><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>-->
-<!--                  <span class="author mb-3 d-block">Jenny Wilson</span>-->
-<!--                  <p class="mb-4 d-block">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero temporibus repudiandae, inventore pariatur numquam cumque possimus</p>-->
-<!--                </div>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </div>-->
 
 <!--          узкая колонка во втором диве-->
-            {% for p in post|slice:"0:1"  %}
-            {% if p.cat.pk == 2 %}
+
           <div class="col-md-3">
 
 
@@ -472,34 +205,33 @@
               <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
               <h2 class="mb-2"><a href="single-post.html">{{p.title }}</a></h2>
 
-              <span class="author mb-3 d-block">Jenny Wilson</span>
+              <span class="author mb-3 d-block">Иванов </span>
             </div>
 
 
 
-          </div>
+          </div>  {% endif %}
+      {% endfor %}
 
 </div>
-      </div> {% endif  %}
-              {% endfor %}
-      {% endif %}
-      {% endfor %}
+      </div>
+
 
     </section><!-- End Business Category Section -->
 
     <!-- ======= Lifestyle Category Section ======= -->
 
-
+    {% for cat in cats %}
+            {% if cat.pk == 3 %}
     <section class="category-section">
       <div class="container" data-aos="fade-up">
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
 
-           {% for cat in cats %}
-            {% if cat.pk == 3 %}
+
 
             <h2>{{cat.name}}</h2>
-            <div><a href="{% url 'category' cat.pk %}" class="more">{{cat.name}}</a></div>
+            <div><a href="{% url 'category' cat.slug %}" class="more">{{cat.name}}</a></div>
 
         </div>
 
@@ -507,13 +239,15 @@
         <div class="row g-5">
 
           <div class="col-lg-4">
-              {% for p in post  %}
-              {% if p.cat.pk == 3 %}
+
             <div class="post-entry-1 lg">
+                {% for p in post  %}
+              {% if p.cat.pk == 3 %}
               <a href="{% url 'post' p.slug  %}"><img src=" {{ p.photo.url }} " alt="" class="img-fluid"></a>
-              <div class="post-meta"><span class="date"> {{cat.name}} </span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }}</span></div>
+              <div class="post-meta"><span class="date"> {{cat.name}} </span>
+                  <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }}</span></div>
               <h2><a href="single-post.html"> {{p.title }}</a></h2>
-              <p class="mb-4 d-block"> {{ p.content   }} </p>
+              <p class="mb-4 d-block"> {{ p.content|linebreaks|truncatewords:100 }} </p>
                   {% endif %}
                   {% endfor %}
 
@@ -533,6 +267,7 @@
           <div class="col-lg-8">
             <div class="row g-5">
               <div class="col-lg-4 border-start custom-border">
+
                 <div class="post-entry-1">
                   <a href="single-post.html"><img src="{%  static  'assets/img/post-landscape-6.jpg' %} " alt="" class="img-fluid"></a>
                   <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }}</span></div>
@@ -565,38 +300,16 @@
                 <div class="post-entry-1 border-bottom">
                   <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                   <h2 class="mb-2"><a href="single-post.html">{{ p.title }} </a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <span class="author mb-3 d-block">Петров</span>
                 </div>
 
                 <div class="post-entry-1 border-bottom">
                   <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
                   <h2 class="mb-2"><a href="single-post.html">{{ p.title }}</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
+                  <span class="author mb-3 d-block">Сидоров </span>
                 </div>
 
-                <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">9 Half-up/half-down Hairstyles for Long and Medium Hair</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
-                </div>
 
-                <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">Life Insurance And Pregnancy: A Working Mom’s Guide</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
-                </div>
-
-                <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">The Best Homemade Masks for Face (keep the Pimples Away)</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
-                </div>
-
-                <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>
-                  <span class="author mb-3 d-block">Jenny Wilson</span>
-                </div>
                 {% endif %}
                   {% endfor %}
 
@@ -612,144 +325,7 @@
 
   </main><!-- End #main -->
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-
-    <div class="footer-content">
-      <div class="container">
-
-        <div class="row g-5">
-          <div class="col-lg-4">
-            <h3 class="footer-heading">About ZenBlog</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ab, perspiciatis beatae autem deleniti voluptate nulla a dolores, exercitationem eveniet libero laudantium recusandae officiis qui aliquid blanditiis omnis quae. Explicabo?</p>
-            <p><a href="about.html" class="footer-link-more">Learn More</a></p>
-          </div>
-          <div class="col-6 col-lg-2">
-            <h3 class="footer-heading">Navigation</h3>
-            <ul class="footer-links list-unstyled">
-              <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
-              <li><a href="index.html"><i class="bi bi-chevron-right"></i> Blog</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
-              <li><a href="single-post.html"><i class="bi bi-chevron-right"></i> Single Post</a></li>
-              <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
-              <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
-            </ul>
-          </div>
-          <div class="col-6 col-lg-2">
-            <h3 class="footer-heading">Categories</h3>
-            <ul class="footer-links list-unstyled">
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Business</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Culture</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Sport</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Food</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Politics</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Celebrity</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Startups</a></li>
-              <li><a href="category.html"><i class="bi bi-chevron-right"></i> Travel</a></li>
-
-            </ul>
-          </div>
-
-          <div class="col-lg-4">
-            <h3 class="footer-heading">Recent Posts</h3>
-
-            <ul class="footer-links footer-blog-entry list-unstyled">
-              <li>
-                <a href="single-post.html" class="d-flex align-items-center">
-                  <img src="assets/img/post-sq-1.jpg" alt="" class="img-fluid me-3">
-                  <div>
-                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                    <span>5 Great Startup Tips for Female Founders</span>
-                  </div>
-                </a>
-              </li>
-
-              <li>
-                <a href="single-post.html" class="d-flex align-items-center">
-                  <img src="assets/img/post-sq-2.jpg" alt="" class="img-fluid me-3">
-                  <div>
-                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                    <span>What is the son of Football Coach John Gruden, Deuce Gruden doing Now?</span>
-                  </div>
-                </a>
-              </li>
-
-              <li>
-                <a href="single-post.html" class="d-flex align-items-center">
-                  <img src="{%  static  'assets/img/post-sq-3.jpg' %} " alt="" class="img-fluid me-3">
-                  <div>
-                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                    <span>Life Insurance And Pregnancy: A Working Mom’s Guide</span>
-                  </div>
-                </a>
-              </li>
-
-              <li>
-                <a href="single-post.html" class="d-flex align-items-center">
-                  <img src="{%  static  'assets/img/post-sq-4.jpg' %} " alt="" class="img-fluid me-3">
-                  <div>
-                    <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                    <span>How to Avoid Distraction and Stay Focused During Video Calls?</span>
-                  </div>
-                </a>
-              </li>
-
-            </ul>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-legal">
-      <div class="container">
-
-        <div class="row justify-content-between">
-          <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-            <div class="copyright">
-              © Copyright <strong><span>ZenBlog</span></strong>. All Rights Reserved
-            </div>
-
-            <div class="credits">
-              <!-- All the links in the footer should remain intact. -->
-              <!-- You can delete the links only if you purchased the pro version. -->
-              <!-- Licensing information: https://bootstrapmade.com/license/ -->
-              <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-              Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-            </div>
-
-          </div>
-
-          <div class="col-md-6">
-            <div class="social-links mb-3 mb-lg-0 text-center text-md-end">
-              <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-    </div>
-
-  </footer>
-
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-  <script src=" {%  static  'assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src=" {%  static  'assets/vendor/swiper/swiper-bundle.min.js' %} "></script>
-  <script src=" {%  static  'assets/vendor/glightbox/js/glightbox.min.js' %} "></script>
-  <script src="{%  static  'assets/vendor/aos/aos.js' %} "></script>
-  <script src=" {%  static  'assets/vendor/php-email-form/validate.js' %} "></script>
-
-  <!-- Template Main JS File -->
-  <script src=" {%  static  'assets/js/main.js' %} "></script>
-
+  {% include "women/footer.html" %}
 </body>
 
 </html>

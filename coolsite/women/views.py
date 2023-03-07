@@ -1,4 +1,3 @@
-
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
@@ -42,7 +41,7 @@ class Category(DataMixin, ListView):
 
 class ShowPost(DataMixin, DetailView):
     model = Women
-    template_name = 'women/post.html'
+    template_name = 'women/single-post.html'
     slug_url_kwarg = 'post_slug'
     context_object_name = 'post'
 
@@ -54,20 +53,18 @@ class ShowPost(DataMixin, DetailView):
 def pageNotFound(request, exception):
     return HttpResponseNotFound(' <h1> страница не найдена  </h1>')
 
+# class AddPage(LoginRequiredMixin, DataMixin, CreateView):
+#     form_class = AddPostForm
+#     template_name = 'women/addpage.html'
+#     success_url = reverse_lazy('home')
+#     login_url = reverse_lazy('home')
+#     raise_exception = True
+#
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super().get_context_data(**kwargs)
+#         c_def = self.get_user_context(title="Добавление статьи")
+#         return dict(list(context.items()) + list(c_def.items()))
 
-class AddPage(LoginRequiredMixin, DataMixin, CreateView):
-    form_class = AddPostForm
-    template_name = 'women/addpage.html'
-    success_url = reverse_lazy('home')
-    login_url = '/admin/'
-
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
-
-# def login(request):
-#     return render(request, 'women/register.html')
 
 def contact(request):
     return render(request, 'women/contact.html')
@@ -82,7 +79,6 @@ class RegisterUSer(DataMixin, CreateView):
     template_name = 'women/register.html'
     success_url = reverse_lazy('login')
 
-
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
@@ -90,6 +86,8 @@ class RegisterUSer(DataMixin, CreateView):
 
 def login(request):
     return render(request, 'register.html')
+
+
 #
 
 
@@ -106,24 +104,39 @@ def login(request):
 #                'cat_selected': cat_id}
 #
 #     return render(request, 'women/category.html', context=context)
-
-
-# def add_page(request):
+# def create(request):
+#     error = ''
 #     if request.method == "POST":
-#         form =AddPostForm(request.POST)
+#         form = TaskForm(request.POST)
 #         if form.is_valid():
-#             print(form.cleaned_data)
-#             try:
-#                 Women.objects.create(**form.cleaned_data)
-#                 return redirect('home')
-#             except:
-#                 form.add_error(None, "Ошибка")
-#         # else:
-#         #     # form =AddPostForm()
+#             form.save()
+#             return redirect('home')
+#         else:
+#             error = 'Error'
+#     form = TaskForm()
 #
-#     form = AddPostForm()
-#     return render(request, 'women/addpage.html', {'menu': menu, 'form': form, 'title': 'добавить статью'})
+#     context ={'form': form, 'error': error}
+#     return render(request, 'main/create.html', context)
 
+def add_page(request):
+    global  context1
+    post = Women.objects.all()
+    if request.method == "POST":
+        form = AddPostForm(request.POST)
+
+
+        if form.is_valid():
+            form.save()
+            print(form.cleaned_data)
+            # try:
+            #     Women.objects.create(**form.cleaned_data)
+            #     return redirect('home')
+            # except:
+            #     form.add_error(None, "Ошибка")
+    else:
+        form = AddPostForm()
+        context1 = {'form': form, 'post': post}
+    return render(request, 'women/addpage.html', context1)
 
 # def show_post(request, post_slug):
 #         post = get_object_or_404(Women, slug=post_slug)
@@ -146,5 +159,3 @@ def login(request):
 #                'cat_selected': 0,}
 #
 #     return render(request, 'women/index.html', context=context)
-
-
