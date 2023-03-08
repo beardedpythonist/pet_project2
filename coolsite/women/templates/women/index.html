@@ -44,6 +44,8 @@
   <main id="main">
 
 
+
+
     <!-- ======= Culture Category Section ======= -->
 
     <section class="category-section">
@@ -51,12 +53,9 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
-            {% for cat in cats %}
-           {% if cat.pk == 1 %}
+            {%  for p in last_act %}
 
-          <h2>{{cat.name}}</h2>
-
-          <div><a href="{% url 'category' cat.slug %}" class="more">{{cat.name}}</a></div>
+          <div><a href="# class="more">{{p.cat.name}}</a></div>
 
                    </div>
 
@@ -64,8 +63,7 @@
         <div class="row">
           <div class="col-md-9">
 <!--            первая большая  картинка в первом диве-->
-              {% for p in post|slice:":1" %}
-                {% if p.cat.pk ==  1  %}
+<
             <div class="d-lg-flex post-entry-2">
               <a href="{% url 'post' p.slug  %}" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
                 <img src="{{ p.photo.url }}" alt="" class="img-fluid">
@@ -73,85 +71,37 @@
               <div>
 <!--                первый блок , первый пост с картинкой -->
 
-                <div class="post-meta"><span class="date">{{cat.name}}</span>
+                <div class="post-meta"><span class="date">{{p.cat.name}}</span>
                   <span class="mx-1">&bullet;</span> <span> {{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
                 <h3><a href="{% url 'post' p.slug  %}">{{p.title}} </a></h3>
                 <p>{{p.content | linebreaks | truncatewords:50}}</p>
-                {% endif %}
-                {% endfor %}
 
-                <div class="d-flex align-items-center author">
-                  <div class="photo"><img src="{{ p.photo.url }}" alt="" class="img-fluid"></div>
-                  <div class="name">
-                    <h3 class="m-0 p-0">Wade Warren</h3>
-                  </div>
-                </div>
-              </div>
-            </div>
-               {% for p in post|slice:"2:3" %}
-            {% if p.cat.pk ==  1  %}
-            <div class="row">
-              <div class="col-lg-4">
-                <div class="post-entry-1 border-bottom">
-                  <a href="{% url 'post' p.slug  %}"><img src="{{ p.photo.url }} " alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">{{cat.name}}</span>
-                    <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
-                  <h2 class="mb-2"><a href="{% url 'post' p.slug  %}"> {{p.title }} </a></h2>
-                  <span class="author mb-3 d-block">Горемыкин   </span>
-                  <p class="mb-4 d-block">{{p.content | linebreaks | truncatewords:20}} </p>
-                </div>
 
-                {% for p in post|slice:"5:9" %}
-                {% if p.cat.pk ==  1  %}
-                <div class="post-entry-1">
-                  <div class="post-meta"><span
-                          class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
-                  <h2 class="mb-2"><a href="{% url 'post' p.slug  %}">{{p.title }}</a></h2>
-                  <span class="author mb-3 d-block">Пилюлин</span>
-                </div>
-                {% endif %}
-                {%  endfor %}
-              </div>
 
-                {% for p in post|slice:"3:5" %}
-                {% if p.cat.pk ==  1  %}
-              <div class="col-lg-8">
-                <div class="post-entry-1">
-                  <a href="{% url 'post' p.slug  %}"><img src=" {{ p.photo.url }} " alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">{{cat.name}}</span>
-                    <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
-                  <h2 class="mb-2"><a href="{% url 'post' p.slug  %}"></a>{{p.title }}</h2>
-                  <span class="author mb-3 d-block"> Автор такой то... </span>
-                  <p class="mb-4 d-block">{{p.content | linebreaks | truncatewords:20}}</p>
-                </div>
-              </div>
-              {% endif %}
-              {%  endfor %}
-            </div>
-          </div>
-          {% endif %}
-          {% endfor %}
+
+
+<!--
 <!--        узкая колонка первая  -->
 
+
+                {% for p in last_act %}
           <div class="col-md-3">
-            {% for p in post|slice:"0:7"  %}
-            {% if p.cat.pk == 1  %}
+
             <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">{{cat.name}} </span> <span class="mx-1">&bullet;</span>
+              <div class="post-meta"><span class="date">{{p.cat.name}} </span> <span class="mx-1">&bullet;</span>
                 <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
               <h2 class="mb-2"><a href="{% url 'post' p.slug  %}">{{ p.title  }} {{ forloop.revcounter }}</a></h2>
               <span class="author mb-3 d-block"> {{ p.content | linebreaks | truncatewords:10 }}</span>
 
             </div>
-            {% endif %}
-            {%  endfor %}
-
+                {% endfor %}
           </div>
+
+                  {% endfor %}
         </div>
 
 
-         {%  endif %}
-          {% endfor %}
+
       </div>
     </section><!-- End Culture Category Section -->
 
@@ -164,7 +114,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header d-flex justify-content-between align-items-center mb-5">
-                    {% for cat in cats %}
+                    {% for cat in last_sport %}
                               {% if cat.pk == 2 %}
 
             <h2>{{cat.name}}</h2>

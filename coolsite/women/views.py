@@ -19,29 +19,35 @@ class WomenHome(DataMixin, ListView):
     template_name = 'women/index.html'
     context_object_name = 'post'
 
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        c_def = self.get_user_context(title='Главная страница')
-        context = dict(list(context.items()) + list(c_def.items()))
-        context['cats'] = Category.objects.all()
+        context['last_act'] = Women.objects.filter(cat__pk=1).order_by("-id")[0:5]
+        context['last_sport'] = Women.objects.filter(cat__pk=2).order_by("-id")[0:5]
+        context['last_sing'] = Women.objects.filter(cat__pk=3).order_by("-id")[0:5]
+        context['last_mode'] = Women.objects.filter(cat__pk=3).order_by("-id")[0:5]
+
+
+
         return context
 
 
 class CategoryListView(DataMixin, ListView):
-    model = Category
+
     template_name = 'women/category.html'
     context_object_name = 'cats'
 
     def get_queryset(self):
+        print(Women.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True))
         return Women.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
 
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['cats'] = Category.objects.all()
 
-
-        return context
+    # def get_context_data(self, *, object_list=None, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['cats'] = Category.objects.all()
+    #     print(context)
+    #     return context
 
 
 class ShowPost(DataMixin, DetailView):
