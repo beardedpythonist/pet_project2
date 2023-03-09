@@ -15,7 +15,7 @@ class UserRegisterForm(UserCreationForm):
         widget=forms.PasswordInput(
             attrs={
                 "autocomplete": "new-password",
-                'class': 'input100',
+                'class': 'field padding-bottom--24',
                 'name': 'password1',
                 'placeholder': 'Введите пароль '
             }
@@ -25,7 +25,7 @@ class UserRegisterForm(UserCreationForm):
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': 'input100',
+                'class': 'field padding-bottom--24',
                 'name': 'password1',
                 'placeholder': 'Введите Имя'
             }
@@ -54,16 +54,6 @@ class LoginForm(AuthenticationForm):
                 'placeholder': 'Введите пароль  '
             }
         ),
-    )
-    username = UsernameField(
-        widget=forms.TextInput(
-            attrs={
-                'autofocus': True,
-                'class': 'field padding-bottom--24',
-                'name': 'password1',
-                'placeholder': 'Enter Username'
-            }
-        )
     )
 
 

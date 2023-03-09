@@ -66,9 +66,6 @@ class RegisterView(CreateView):
     template_name = 'women/register.html'
     success_url = reverse_lazy('women/index.html')
 
-
-
-
 def login(request):
     return render(request, 'register.html')
 

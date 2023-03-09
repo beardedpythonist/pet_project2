@@ -1,10 +1,8 @@
-{% load static %}
-
 <html>
 <head>
   <meta charset="utf-8">
   <title>Stackfindover: Sign in</title>
-  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
 <body>
@@ -44,20 +42,16 @@
       </div>
       <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
         <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-          <h1><a href="http://blog.stackfindover.com/" rel="dofollow">Регистрация </a></h1>
+          <h1><a href="http://blog.stackfindover.com/" rel="dofollow">Stackfindover</a></h1>
         </div>
         <div class="formbg-outer">
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
-              <span class="padding-bottom--15">создай свой эккаунт </span>
-
-
-               <form  id="stripe-login" method="post">
-                 {% csrf_token %}
-
+              <span class="padding-bottom--15">Sign in to your account</span>
+              <form id="stripe-login">
                 <div class="field padding-bottom--24">
-                  <label for="email"> Username </label>
-                  {{ form.username }}
+                  <label for="email">Email</label>
+                  <input type="email" name="email">
                 </div>
                 <div class="field padding-bottom--24">
                   <div class="grid--50-50">
@@ -66,7 +60,7 @@
                       <a href="#">Forgot your password?</a>
                     </div>
                   </div>
-                  {{ form.password  }}
+                  <input type="password" name="password">
                 </div>
                 <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
                   <label for="checkbox">
@@ -74,12 +68,12 @@
                   </label>
                 </div>
                 <div class="field padding-bottom--24">
-                  <input type="submit" name="submit" value=" Зарегистрироваться">
+                  <input type="submit" name="submit" value="Continue">
                 </div>
                 <div class="field">
                   <a class="ssolink" href="#">Use single sign-on (Google) instead</a>
                 </div>
-               </form>
+              </form>
             </div>
           </div>
           <div class="footer-link padding-top--24">
