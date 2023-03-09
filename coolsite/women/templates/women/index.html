@@ -1,281 +1,218 @@
-{% load static  %}
+{% load static %}
 <!DOCTYPE html>
+
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>ZenBlog Bootstrap Template - Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="{%  static  'assets/img/favicon.png' %} " rel="icon">
-  <link href="{%  static  'assets/img/apple-touch-icon.png' %} " rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href=" {%  static  'assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-  <link href=" {%  static  'assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
-  <link href=" {%  static  'assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
-  <link href="{%  static  'assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-  <link href=" {%  static  'assets/vendor/aos/aos.css' %}" rel="stylesheet">
-
-  <!-- Template Main CSS Files -->
-  <link href=" {%  static  'assets/css/variables.css' %}" rel="stylesheet">
-  <link href=" {%  static  'assets/css/main.css' %} " rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: ZenBlog - v1.3.0
-  * Template URL: https://bootstrapmade.com/zenblog-bootstrap-blog-template/
-  * Author: BootstrapMade.com
-  * License: https:///bootstrapmade.com/license/
-  ======================================================== -->
-</head>
-
-<body>
-
- {% include "women/header.html" %}
-  <main id="main">
-
-
-
-
-    <!-- ======= Culture Category Section ======= -->
-
-    <section class="category-section">
-
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header d-flex justify-content-between align-items-center mb-5">
-            {%  for p in last_act %}
-
-          <div><a href="# class="more">{{p.cat.name}}</a></div>
-
-                   </div>
-
-
-        <div class="row">
-          <div class="col-md-9">
-<!--            первая большая  картинка в первом диве-->
-<
-            <div class="d-lg-flex post-entry-2">
-              <a href="{% url 'post' p.slug  %}" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
-                <img src="{{ p.photo.url }}" alt="" class="img-fluid">
-              </a>
-              <div>
-<!--                первый блок , первый пост с картинкой -->
-
-                <div class="post-meta"><span class="date">{{p.cat.name}}</span>
-                  <span class="mx-1">&bullet;</span> <span> {{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
-                <h3><a href="{% url 'post' p.slug  %}">{{p.title}} </a></h3>
-                <p>{{p.content | linebreaks | truncatewords:50}}</p>
-
-
-
-
-
-<!--
-<!--        узкая колонка первая  -->
-
-
-                {% for p in last_act %}
-          <div class="col-md-3">
-
-            <div class="post-entry-1 border-bottom">
-              <div class="post-meta"><span class="date">{{p.cat.name}} </span> <span class="mx-1">&bullet;</span>
-                <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
-              <h2 class="mb-2"><a href="{% url 'post' p.slug  %}">{{ p.title  }} {{ forloop.revcounter }}</a></h2>
-              <span class="author mb-3 d-block"> {{ p.content | linebreaks | truncatewords:10 }}</span>
-
-            </div>
-                {% endfor %}
-          </div>
-
-                  {% endfor %}
-        </div>
-
-
-
-      </div>
-    </section><!-- End Culture Category Section -->
-
-
-
-    <!-- ======= Business Category Section ======= -->
-
-    <section class="category-section">
-
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header d-flex justify-content-between align-items-center mb-5">
-                    {% for cat in last_sport %}
-                              {% if cat.pk == 2 %}
-
-            <h2>{{cat.name}}</h2>
-            <div><a href="{% url 'category' cat.slug %}" class="more">{{cat.name}}</a></div>
-
-
-                    {% for p in post %}
-                {% if p.cat.pk ==  2  %}
-
-        </div>
-<!--            первая картинка во втором  диве (большая  колонка)&ndash;&gt;-->
-
-
-
-        <div class="row">
-          <div class="col-md-9 order-md-2">
-
-            <div class="d-lg-flex post-entry-2">
-              <a href="single-post.html" class="me-4 thumbnail d-inline-block mb-4 mb-lg-0">
-                <img src="{{ p.photo.url }} " alt="" class="img-fluid">
-              </a>
-              <div>
-                <div class="post-meta"><span class="date">{{cat.name}}</span>
-                    <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
-                <h3><a href="{% url 'post' p.slug  %}">{{ p.title }}</a></h3>
-                <p> {{ p.content | linebreaks | truncatewords:20}} </p>
-                                                 {% endif %}
-                                              {% endfor %}
-
-
-<!--          узкая колонка во втором диве-->
-
-          <div class="col-md-3">
-
-
-            <div class="post-entry-1 border-bottom">
-
-              <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }} </span></div>
-              <h2 class="mb-2"><a href="single-post.html">{{p.title }}</a></h2>
-
-              <span class="author mb-3 d-block">Иванов </span>
-            </div>
-
-
-
-          </div>  {% endif %}
-      {% endfor %}
-
-</div>
-      </div>
-
-
-    </section><!-- End Business Category Section -->
-
-    <!-- ======= Lifestyle Category Section ======= -->
-
-    {% for cat in cats %}
-            {% if cat.pk == 3 %}
-    <section class="category-section">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header d-flex justify-content-between align-items-center mb-5">
-
-
-
-            <h2>{{cat.name}}</h2>
-            <div><a href="{% url 'category' cat.slug %}" class="more">{{cat.name}}</a></div>
-
-        </div>
-
-<!--          первый  большой контент в 3м секторе -->
-        <div class="row g-5">
-
-          <div class="col-lg-4">
-
-            <div class="post-entry-1 lg">
-                {% for p in post  %}
-              {% if p.cat.pk == 3 %}
-              <a href="{% url 'post' p.slug  %}"><img src=" {{ p.photo.url }} " alt="" class="img-fluid"></a>
-              <div class="post-meta"><span class="date"> {{cat.name}} </span>
-                  <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }}</span></div>
-              <h2><a href="single-post.html"> {{p.title }}</a></h2>
-              <p class="mb-4 d-block"> {{ p.content|linebreaks|truncatewords:100 }} </p>
-                  {% endif %}
-                  {% endfor %}
-
-
-              <div class="d-flex align-items-center author">
-                <div class="photo"><img src="{%  static  'assets/img/person-7.jpg' %}" alt="" class="img-fluid"></div>
-                <div class="name">
-                  <h3 class="m-0 p-0">Esther Howard</h3>
-                </div>
-              </div>
-            </div>
-
-
-
-          </div>
-
-          <div class="col-lg-8">
-            <div class="row g-5">
-              <div class="col-lg-4 border-start custom-border">
-
-                <div class="post-entry-1">
-                  <a href="single-post.html"><img src="{%  static  'assets/img/post-landscape-6.jpg' %} " alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }}</span></div>
-                  <h2><a href="single-post.html">Let’s Get Back to Work, New York</a></h2>
-                </div>
-                <div class="post-entry-1">
-                  <a href="single-post.html"><img src="{%  static  'assets/img/post-landscape-5.jpg' %} " alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }}</span></div>
-                  <h2><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
-                </div>
-                <div class="post-entry-1">
-                  <a href="single-post.html"><img src=" {%  static  'assets/img/post-landscape-4.jpg' %} " alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>{{p.time_update|date:'d-m-Y H:i:s' }}</span></div>
-                  <h2><a href="single-post.html">Why Craigslist Tampa Is One of The Most Interesting Places On the Web?</a></h2>
-                </div>
-              </div>
-              <div class="col-lg-4 border-start custom-border">
-
-              {% for p  in post %}
-                {% if p.cat.pk == 3 %}
-                <div class="post-entry-1">
-                  <a href="single-post.html"><img src="{{ p.photo.url }}" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2><a href="single-post.html">{{ p.title }}</a></h2>
-
-                </div>
-              </div>
-              <div class="col-lg-4">
-
-                <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">{{ p.title }} </a></h2>
-                  <span class="author mb-3 d-block">Петров</span>
-                </div>
-
-                <div class="post-entry-1 border-bottom">
-                  <div class="post-meta"><span class="date">{{cat.name}}</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2 class="mb-2"><a href="single-post.html">{{ p.title }}</a></h2>
-                  <span class="author mb-3 d-block">Сидоров </span>
-                </div>
-
-
-                {% endif %}
-                  {% endfor %}
-
-              </div>
-            </div>
-          </div>
-
-        </div> <!-- End .row -->
-      </div>
-    </section><!-- End Lifestyle Category Section -->
-         {%  endif %}
-            {% endfor %}
-
-  </main><!-- End #main -->
-
-  {% include "women/footer.html" %}
-</body>
-
+  <head>
+    <title>Andrea - Free Bootstrap 4 Template by Colorlib</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'css/open-iconic-bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/aos.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/ionicons.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datepicker.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jquery.timepicker.css' %}">
+
+    
+    <link rel="stylesheet" href="{%  static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icomoon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+
+	{% include 'women/side-header.html' %}
+
+		<!-- END COLORLIB-ASIDE -->
+		<div id="colorlib-main">
+
+			<section class="ftco-section ftco-no-pt ftco-no-pb">
+	    	<div class="container">
+	    		<div class="row d-flex">
+	    			<div class="col-xl-8 py-5 px-md-5">
+						{% for p in last_all %}
+
+	    				<div class="row pt-md-4">
+			    			<div class="col-md-12">
+									<div class="blog-entry ftco-animate d-md-flex">
+										<a href="" class="img img-2"
+										   style="background-image: url('../static/images/image_1.jpg');"></a>
+										<div class="text text-2 pl-md-4">
+				              <h3 class="mb-2"><a href="{% url 'post' p.slug %}"> {{ p.title }} </a></h3>
+				              <div class="meta-wrap">
+												<p class="meta">
+				              		<span><i class="icon-calendar mr-2"></i> {{p.time_update|date:'d-m-Y H:i:s' }} </span>
+				              		<span><a href="{% url 'category' p.cat.slug %} "><i class="icon-folder-o mr-2"></i> {{ p.cat.name }}</a></span>
+				              		<span><i class="icon-comment2 mr-2"></i>5 Comment</span>
+				              	</p>
+			              	</div>
+				              <p class="mb-4"> {{ p.content | linebreaks | truncatewords:50 }}</p>
+				              <p><a href=" {% url 'post' p.slug %} " class="btn-custom">Read More <span class="ion-ios-arrow-forward"></span></a></p>
+				            </div>
+									</div>
+								</div>
+
+
+
+
+			    		</div>
+
+						{% endfor %}
+						<!-- END-->
+			    		<div class="row">
+			          <div class="col">
+			            <div class="block-27">
+			              <ul>
+			                <li><a href="#">&lt;</a></li>
+			                <li class="active"><span>1</span></li>
+			                <li><a href="#">2</a></li>
+			                <li><a href="#">3</a></li>
+			                <li><a href="#">4</a></li>
+			                <li><a href="#">5</a></li>
+			                <li><a href="#">&gt;</a></li>
+			              </ul>
+			            </div>
+			          </div>
+			        </div>
+			    	</div>
+	    			<div class="col-xl-4 sidebar ftco-animate bg-light pt-5">
+	            <div class="sidebar-box pt-md-4">
+	              <form action="#" class="search-form">
+	                <div class="form-group">
+	                  <span class="icon icon-search"></span>
+	                  <input type="text" class="form-control" placeholder="Type a keyword and hit enter">
+	                </div>
+	              </form>
+	            </div>
+	            <div class="sidebar-box ftco-animate">
+	            	<h3 class="sidebar-heading">Categories</h3>
+	              <ul class="categories">
+					{% for cat in cats %}
+	                <li><a href=" {% url 'category' cat.slug %}"> {{ cat.name }}	 <span>(6)</span></a></li>
+
+					  {% endfor %}
+	              </ul>
+	            </div>
+
+	            <div class="sidebar-box ftco-animate">
+	              <h3 class="sidebar-heading">Popular Articles</h3>
+	              <div class="block-21 mb-4 d-flex">
+	                <a class="blog-img mr-4" style="background-image: url('../static/images/image_1.jpg');"></a>
+	                <div class="text">
+	                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
+	                  <div class="meta">
+	                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
+	                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
+	                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+	                  </div>
+	                </div>
+	              </div>
+	              <div class="block-21 mb-4 d-flex">
+	                <a class="blog-img mr-4" style="background-image: url('../static/images/image_2.jpg');"></a>
+	                <div class="text">
+	                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
+	                  <div class="meta">
+	                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
+	                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
+	                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+	                  </div>
+	                </div>
+	              </div>
+	              <div class="block-21 mb-4 d-flex">
+	                <a class="blog-img mr-4" style="background-image: url('../static/images/image_3.jpg');"></a>
+	                <div class="text">
+	                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
+	                  <div class="meta">
+	                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
+	                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
+	                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
+	                  </div>
+	                </div>
+	              </div>
+	            </div>
+
+	            <div class="sidebar-box ftco-animate">
+	              <h3 class="sidebar-heading">Tag Cloud</h3>
+	              <ul class="tagcloud">
+	                <a href="#" class="tag-cloud-link">animals</a>
+	                <a href="#" class="tag-cloud-link">human</a>
+	                <a href="#" class="tag-cloud-link">people</a>
+	                <a href="#" class="tag-cloud-link">cat</a>
+	                <a href="#" class="tag-cloud-link">dog</a>
+	                <a href="#" class="tag-cloud-link">nature</a>
+	                <a href="#" class="tag-cloud-link">leaves</a>
+	                <a href="#" class="tag-cloud-link">food</a>
+	              </ul>
+	            </div>
+
+							<div class="sidebar-box subs-wrap img py-4" style="background-image: url('../static/images/bg_1.jpg');">
+								<div class="overlay"></div>
+								<h3 class="mb-4 sidebar-heading">Newsletter</h3>
+								<p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia</p>
+	              <form action="#" class="subscribe-form">
+	                <div class="form-group">
+	                  <input type="text" class="form-control" placeholder="Email Address">
+	                  <input type="submit" value="Subscribe" class="mt-2 btn btn-white submit">
+	                </div>
+	              </form>
+	            </div>
+
+	            <div class="sidebar-box ftco-animate">
+	            	<h3 class="sidebar-heading">Archives</h3>
+	              <ul class="categories">
+	              	<li><a href="#">Decob14 2018 <span>(10)</span></a></li>
+	                <li><a href="#">September 2018 <span>(6)</span></a></li>
+	                <li><a href="#">August 2018 <span>(8)</span></a></li>
+	                <li><a href="#">July 2018 <span>(2)</span></a></li>
+	                <li><a href="#">June 2018 <span>(7)</span></a></li>
+	                <li><a href="#">May 2018 <span>(5)</span></a></li>
+	              </ul>
+	            </div>
+
+
+	            <div class="sidebar-box ftco-animate">
+	              <h3 class="sidebar-heading">Paragraph</h3>
+	              <p>Lorem ipsum dolor sit amet, consectetur
+					  adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut.</p>
+	            </div>
+	          </div><!-- END COL -->
+	    		</div>
+
+	    	</div>
+	    </section>
+		</div><!-- END COLORLIB-MAIN -->
+	</div><!-- END COLORLIB-PAGE -->
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src=" {% static 'js/jquery.min.js' %}"></script>
+  <script src="{%  static 'js/jquery-migrate-3.0.1.min.js' %}"></script>
+  <script src="{%  static 's/popper.min.js' %}j"></script>
+  <script src="{%  static 'js/bootstrap.min.js' %}"></script>
+  <script src="{%  static 'js/jquery.easing.1.3.js' %}"></script>
+  <script src="{%  static 'js/jquery.waypoints.min.js' %}"></script>
+  <script src="{%  static 'js/jquery.stellar.min.js' %}"></script>
+  <script src="{%  static 'js/owl.carousel.min.js' %}"></script>
+  <script src="{%  static 'js/jquery.magnific-popup.min.js' %}"></script>
+  <script src="{%  static 'js/aos.js' %}"></script>
+  <script src="{%  static 'js/jquery.animateNumber.min.js' %}"></script>
+  <script src="{%  static 'js/scrollax.min.js' %}"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="{%  static 'js/google-map.js' %}"></script>
+  <script src="{%  static  'js/main.js' %}"></script>
+    
+  </body>
 </html>
