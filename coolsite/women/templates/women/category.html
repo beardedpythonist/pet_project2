@@ -96,8 +96,8 @@
 	            <div class="sidebar-box ftco-animate">
 	            	<h3 class="sidebar-heading">Categories</h3>
 	              <ul class="categories">
-					{% for cat in cat_all %}
-	                <li><a href=" {% url 'category' cat.slug %}"> {{ cat.name }}	 <span>(6)</span></a></li>
+					{% for cat in cats %}
+	                <li><a href="{{ cat.get_absolute_url  }}"> {{ cat.name }}	 <span>(6)</span></a></li>
 
 					  {% endfor %}
 	              </ul>
