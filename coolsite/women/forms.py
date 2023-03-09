@@ -1,10 +1,72 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import *
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm, TextInput, Textarea, Select
 
 from .models import *
+
+
+
+class UserRegisterForm(UserCreationForm):
+    password = forms.CharField(
+        label=("Password"),
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={
+                "autocomplete": "new-password",
+                'class': 'input100',
+                'name': 'password1',
+                'placeholder': 'Введите пароль '
+            }
+        ),
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+    username = forms.CharField(
+        widget=forms.TextInput(
+            attrs={
+                'class': 'input100',
+                'name': 'password1',
+                'placeholder': 'Введите Имя'
+            }
+        )
+    )
+
+class LoginForm(AuthenticationForm):
+    username = UsernameField(
+        widget=forms.TextInput(
+            attrs={
+                'autofocus': True,
+                'class': 'field padding-bottom--24',
+                'name': 'password1',
+                'placeholder': 'Enter Username'
+            }
+        )
+    )
+    password = forms.CharField(
+        label=("Password"),
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={
+                "autocomplete": "new-password",
+                'class': 'field padding-bottom--24',
+                'name': 'password1',
+                'placeholder': 'Введите пароль  '
+            }
+        ),
+    )
+    username = UsernameField(
+        widget=forms.TextInput(
+            attrs={
+                'autofocus': True,
+                'class': 'field padding-bottom--24',
+                'name': 'password1',
+                'placeholder': 'Enter Username'
+            }
+        )
+    )
+
+
 
 class AddPostForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -27,17 +89,3 @@ class AddPostForm(forms.ModelForm):
 
 
 
-
-
-class RegisterUserForm(UserCreationForm):
-    username = forms.CharField(label='ЛОгин', widget=forms.TextInput(attrs={'class': 'form-input'}))
-    Password1 = forms.CharField(label='пароль', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
-    Password2= forms.CharField(label='пароль повтор', widget=forms.PasswordInput(attrs={'class': 'form-input'}))
-
-    class Meta:
-        model = User
-        fields = ('username', 'password', 'password2')
-        widgets = {'username':  forms.TextInput(attrs={'class': 'form-input'}),
-            'password':  forms.PasswordInput(attrs={'class': 'form-input'}),
-          'password2': forms.PasswordInput(attrs={'class': 'form-input'})
-        }

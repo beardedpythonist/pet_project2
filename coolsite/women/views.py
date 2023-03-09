@@ -29,7 +29,6 @@ class CategoryListView(DataMixin, ListView):
     template_name = 'women/category.html'
     context_object_name = 'posts'
 
-
     def get_queryset(self):
         return Women.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
 
@@ -61,14 +60,13 @@ def search(request):
     return render(request, 'women/search-result.html')
 
 
-class RegisterUSer(DataMixin, CreateView):
-    form_class = RegisterUserForm
+class RegisterView(CreateView):
+    model = User
+    form_class = UserRegisterForm
     template_name = 'women/register.html'
-    success_url = reverse_lazy('login')
+    success_url = reverse_lazy('women/index.html')
 
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
+
 
 
 def login(request):
