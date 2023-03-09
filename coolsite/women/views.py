@@ -26,11 +26,18 @@ class WomenHome(DataMixin, ListView):
 
 
 class CategoryListView(DataMixin, ListView):
+    model = Women
     template_name = 'women/category.html'
     context_object_name = 'posts'
 
     def get_queryset(self):
-        return Women.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
+        return self.model.objects.filter(cat__slug=self.kwargs['cat_slug'], is_published=True)
+
+    def get_context_data(self):
+        context = super(CategoryListView, self).get_context_data()
+        context['cats'] = Category.objects.all()
+        return context
+
 
 class ShowPost(DataMixin, DetailView):
     model = Women
@@ -64,7 +71,7 @@ class RegisterView(CreateView):
     model = User
     form_class = UserRegisterForm
     template_name = 'women/register.html'
-    success_url = reverse_lazy('women/index.html')
+    success_url = reverse_lazy('home')
 
 def login(request):
     return render(request, 'register.html')
