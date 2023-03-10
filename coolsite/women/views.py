@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 
 from .utils import *
 from .forms import *
@@ -12,14 +13,16 @@ menu = [{'title': 'На главную страницу', 'url_name': 'home'},
         {'title': ' О сайте', 'url_name': 'about'},
         {'title':'Добавить новый блог', 'url_name':'add_page'},
         {'title':'Авторизация', 'url_name':'login'},
-        {'title': 'Регистрация', 'url_name': 'register'},
+        {'title': 'Регистрация', 'url_name': 'signup'},
     ]
 
 
 class WomenHome(DataMixin, ListView):
+    paginate_by = 4
     model = Women
     template_name = 'women/index.html'
     context_object_name = 'post'
+
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -36,6 +39,7 @@ class WomenHome(DataMixin, ListView):
 
 
 class CategoryListView(DataMixin, ListView):
+    paginate_by = 4
     model = Women
     template_name = 'women/category.html'
     context_object_name = 'posts'
@@ -71,20 +75,15 @@ class AddPage(LoginRequiredMixin, DataMixin, CreateView):
 
 
 
-
-def contact(request):
-    return render(request, 'women/contact.html')
-
-
 def search(request):
     return render(request, 'women/search-result.html')
-
 
 class RegisterView(CreateView):
     model = User
     form_class = UserRegisterForm
     template_name = 'women/register.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('about/')
+
 
 def login(request):
     return render(request, 'register.html')
@@ -94,16 +93,15 @@ def login(request):
 # def create(request):
 #     error = ''
 #     if request.method == "POST":
-#         form = TaskForm(request.POST)
+#         form = UserRegisterForm(request.POST)
 #         if form.is_valid():
 #             form.save()
 #             return redirect('home')
 #         else:
 #             error = 'Error'
-#     form = TaskForm()
-#
+#     form = UserRegisterForm(request.POST)
 #     context ={'form': form, 'error': error}
-#     return render(request, 'main/create.html', context)
+#     return render(request, 'women/register.html', context)
 
 def add_page(request):
     global  context1
@@ -129,3 +127,5 @@ def about(request):
     context = {'menu': menu}
     return render(request, 'women/about.html', context)
 
+# def contact(request):
+#     return render(request, 'women/contact.html')

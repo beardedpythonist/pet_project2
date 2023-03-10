@@ -1,49 +1,48 @@
+from importlib.resources._common import _
 from django import forms
 from django.contrib.auth.forms import *
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm, TextInput, Textarea, Select
-
 from .models import *
-
-
 
 class UserRegisterForm(UserCreationForm):
     password1 = forms.CharField(
-        label=("Password"),
+        label=_("Password"),
         strip=False,
         widget=forms.PasswordInput(
             attrs={
                 "autocomplete": "new-password",
-                'class': 'field padding-bottom--24',
+                'class': 'input100',
                 'name': 'password1',
-                'placeholder': 'Введите пароль '
+                'placeholder': 'Enter Password'
             }
         ),
         help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
-        label=("Password"),
-        strip=False,
+        label=_("Password confirmation"),
         widget=forms.PasswordInput(
             attrs={
                 "autocomplete": "new-password",
-                'class': 'field padding-bottom--24',
+                'class': 'input100',
                 'name': 'password1',
-                'placeholder': 'Введите пароль '
+                'placeholder': 'Re-Enter Password'
             }
         ),
-        help_text=password_validation.password_validators_help_text_html(),
+        strip=False,
+        help_text=_("Enter the same password as before, for verification."),
     )
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': 'field padding-bottom--24',
+                'class': 'input100',
                 'name': 'password1',
-                'placeholder': 'Введите Имя'
+                'placeholder': 'Enter Username'
             }
         )
     )
+
 
 class LoginForm(AuthenticationForm):
     username = UsernameField(
