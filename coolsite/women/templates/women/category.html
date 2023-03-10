@@ -46,9 +46,9 @@
 			    			<div class="col-md-12">
 									<div class="blog-entry ftco-animate d-md-flex">
 										<a href="" class="img img-2"
-										   style="background-image: url('../static/images/image_1.jpg');"></a>
+										   style="background-image: url('{{ p.photo.url }}');"></a>
 										<div class="text text-2 pl-md-4">
-				              <h3 class="mb-2"><a href="single.html"> {{ p.title }} </a></h3>
+				              <h3 class="mb-2"><a href="{% url 'post' p.slug %}" > {{ p.title }} </a></h3>
 				              <div class="meta-wrap">
 												<p class="meta">
 				              		<span><i class="icon-calendar mr-2"></i> {{p.time_update|date:'d-m-Y H:i:s' }} </span>

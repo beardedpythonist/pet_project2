@@ -62,11 +62,15 @@
                 <div class="field padding-bottom--24">
                   <div class="grid--50-50">
                     <label for="password">Password</label>
-                    <div class="reset-pass">
-                      <a href="#">Forgot your password?</a>
-                    </div>
                   </div>
-                  {{ form.password  }}
+                  {{ form.password1  }}
+                </div>
+                 <div class="field padding-bottom--24">
+                  <div class="grid--50-50">
+                    <label for="password">Repeat Password</label>
+                  </div>
+                  {{ form.password2  }}
+                   {{ form.error_message }}
                 </div>
                 <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
                   <label for="checkbox">

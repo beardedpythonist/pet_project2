@@ -73,7 +73,6 @@
 		              </div>
 		            </div>
 
-
 		            <div class="pt-5 mt-5">
 		              <h3 class="mb-5 font-weight-bold">6 Comments</h3>
 		              <ul class="comment-list">
@@ -198,13 +197,15 @@
 	              </form>
 	            </div>
 	            <div class="sidebar-box ftco-animate">
-	            	<h3 class="sidebar-heading">Categories</h3>
+
+					<h3 class="sidebar-heading">Категории </h3>
 	              <ul class="categories">
-	                <li><a href="#">Fashion <span>(6)</span></a></li>
-	                <li><a href="#">Technology <span>(8)</span></a></li>
-	                <li><a href="#">Travel <span>(2)</span></a></li>
-	                <li><a href="#">Food <span>(2)</span></a></li>
-	                <li><a href="#">Photography <span>(7)</span></a></li>
+					{% for cat in cats %}
+	                <li><a href="{{ cat.get_absolute_url  }}"> {{ cat.name }}	 <span>(6)</span></a></li>
+
+					  {% endfor %}
+
+
 	              </ul>
 	            </div>
 

@@ -10,4 +10,5 @@ urlpatterns = [path('', WomenHome.as_view(), name='home'),
                path('post/<slug:post_slug>/', ShowPost.as_view(), name='post'),
                path('search-result/', search, name='search'),
                path('cats/<slug:cat_slug>/', CategoryListView.as_view(), name='category'),
+                path('about/', about, name='about')        ,
                ]

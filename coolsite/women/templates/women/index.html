@@ -46,8 +46,8 @@
 	    				<div class="row pt-md-4">
 			    			<div class="col-md-12">
 									<div class="blog-entry ftco-animate d-md-flex">
-										<a href="" class="img img-2"
-										   style="background-image: url('../static/images/image_1.jpg');"></a>
+										<a href=" {% url 'post' p.slug %} " class="img img-2"
+										   style="background-image: url('{{ p.photo.url }}');"> </a>
 										<div class="text text-2 pl-md-4">
 				              <h3 class="mb-2"><a href="{% url 'post' p.slug %}"> {{ p.title }} </a></h3>
 				              <div class="meta-wrap">
@@ -96,10 +96,13 @@
 	              </form>
 	            </div>
 	            <div class="sidebar-box ftco-animate">
-	            	<h3 class="sidebar-heading">Categories</h3>
+	            	<h3 class="sidebar-heading">Категории </h3>
 	              <ul class="categories">
 					{% for cat in cats %}
-	                <li><a href=" {% url 'category' cat.slug %}"> {{ cat.name }}	 <span>(6)</span></a></li>
+	                <li><a href=" {% url 'category' cat.slug %}"> {{ cat.name }}
+
+
+						<span>(6)</span></a></li>
 
 					  {% endfor %}
 	              </ul>
@@ -107,12 +110,16 @@
 
 	            <div class="sidebar-box ftco-animate">
 	              <h3 class="sidebar-heading">Popular Articles</h3>
+
 	              <div class="block-21 mb-4 d-flex">
-	                <a class="blog-img mr-4" style="background-image: url('../static/images/image_1.jpg');"></a>
+
+	                <a class="blog-img mr-4"  style="background-image: url('#);"></a>
 	                <div class="text">
-	                  <h3 class="heading"><a href="#">Even the all-powerful Pointing has no control</a></h3>
+	                  <h3 class="heading"><a href="#">{{ p.title }}</a></h3>
+
 	                  <div class="meta">
-	                    <div><a href="#"><span class="icon-calendar"></span> June 28, 2019</a></div>
+	                    <div><a href="#"><span class="icon-calendar"></span> {{p.time_update|date:'d-m-Y H:i:s' }} </a></div>
+
 	                    <div><a href="#"><span class="icon-person"></span> Dave Lewis</a></div>
 	                    <div><a href="#"><span class="icon-chat"></span> 19</a></div>
 	                  </div>

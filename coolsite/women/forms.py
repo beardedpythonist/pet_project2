@@ -9,7 +9,20 @@ from .models import *
 
 
 class UserRegisterForm(UserCreationForm):
-    password = forms.CharField(
+    password1 = forms.CharField(
+        label=("Password"),
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={
+                "autocomplete": "new-password",
+                'class': 'field padding-bottom--24',
+                'name': 'password1',
+                'placeholder': 'Введите пароль '
+            }
+        ),
+        help_text=password_validation.password_validators_help_text_html(),
+    )
+    password2 = forms.CharField(
         label=("Password"),
         strip=False,
         widget=forms.PasswordInput(
