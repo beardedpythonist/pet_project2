@@ -8,6 +8,7 @@
 							{% for m in menu|slice:":3" %}
 										<li class="colorlib-active"><a href=" {% url m.url_name %} " > {{ m.title }} </a></li>
 							{% endfor %}
+										<li class="pfooter ">   на сайт вошёл :  {{ user.username}} </li>
 					 {% else %}
 						{% for m in menu|slice:"1:5" %}
 									<li class="colorlib-active" ><a href=" {% url m.url_name %} " > {{ m.title }} </a></li>
@@ -20,7 +21,7 @@
 			</nav>
 
 			<div class="colorlib-footer">
-				<h1 id="colorlib-logo" class="mb-4"><a href="#" style="background-image: url('../static/images/bg_1.jpg');">Andrea <span>Moore</span></a></h1>
+				<h1 id="colorlib-logo" class="mb-6"><a href="#" style="background-image: url('../static/images/bg_1.jpg');"> Гордей  <span> Александр </span></a></h1>
 				<div class="mb-4">
 					<h3>Subscribe for newsletter</h3>
 					<form action="#" class="colorlib-subscribe-form">
@@ -31,7 +32,7 @@
           </form>
 				</div>
 				<p class="pfooter"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-	  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+	  Copyright &copy;<script>document.write(new Date().getFullYear());</script> Сайт создан Гордеем А.Н.  <i class="icon-heart" aria-hidden="true"></i>
 	  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 			</div>
           	</aside>
