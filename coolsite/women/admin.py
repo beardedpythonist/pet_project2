@@ -15,7 +15,14 @@ class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug":('name',)}
 
 
-# Register your models here.
+@admin.register(Comments)
+class Role(admin.ModelAdmin):
+    list_display = ('author', 'text')
+    search_fields = ('author', 'text')
+
+
 admin.site.register(Women, WomenAdmin)
 admin.site.register(Category, CategoryAdmin)
+
+
 

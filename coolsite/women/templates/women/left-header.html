@@ -15,7 +15,7 @@
 	                <li><a href=" {% url 'category' cat.slug %}"> {{ cat.name }}
 
 
-						<span>(6)</span></a></li>
+						<span> {{ cat.pk }} </span></a></li>
 
 					  {% endfor %}
 	              </ul>

@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import *
 from django.urls import reverse_lazy
 from django.views.generic import *
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.edit import FormMixin
+from django.contrib.auth.mixins import *
 from django.contrib.auth.models import User
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import *
+
 
 from .utils import *
 from .forms import *
@@ -18,10 +20,11 @@ menu = [
 
     ]
 
-class WomenHome(DataMixin, ListView):
+class WomenHome( DataMixin, ListView):
     model = Women
     template_name = 'women/index.html'
     context_object_name = 'post'
+
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -52,11 +55,33 @@ class CategoryListView(DataMixin, ListView):
         return context
 
 
-class ShowPost(DataMixin, DetailView):
+class ShowPost(DataMixin, FormMixin, DetailView):
     model = Women
     template_name = 'women/single.html'
     slug_url_kwarg = 'post_slug'
     context_object_name = 'post'
+    form_class = CommentForm
+
+
+
+    def get_success_url(self, **kwargs):
+
+        return reverse_lazy('post', kwargs={'post_slug':self.get_object().slug})
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.article = self.get_object()
+        self.object.author = self.request.user
+        self.object.save()
+        return super().form_valid(form)
+
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['menu'] = menu
@@ -64,18 +89,7 @@ class ShowPost(DataMixin, DetailView):
         return context
 
 
-# class AddPage(LoginRequiredMixin, DataMixin, CreateView):
-#     form_class = AddPostForm
-#     template_name = 'women/addpage.html'
-#     success_url = reverse_lazy('home')
-#     login_url = reverse_lazy('home')
-#     raise_exception = True
-#
 
-
-
-def contact(request):
-    return render(request, 'women/contact.html')
 
 
 def search(request):
