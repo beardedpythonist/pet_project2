@@ -54,23 +54,23 @@
 
                <form  id="stripe-login" method="post">
                  {% csrf_token %}
-
+                   {{ form.non_field_errors }}
                 <div class="field padding-bottom--24">
                   <label for="email"> Username </label>
                   {{ form.username }}
                 </div>
                 <div class="field padding-bottom--24">
                   <div class="grid--50-50">
-                    <label for="password">Password</label>
+                    <label for="password"> Password</label>
                   </div>
+
                   {{ form.password1  }}
                 </div>
                  <div class="field padding-bottom--24">
                   <div class="grid--50-50">
-                    <label for="password">Repeat Password</label>
+                    <label for="password"> Repeat Password</label>
                   </div>
                   {{ form.password2  }}
-                   {{ form.error_message }}
                 </div>
                 <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
 <!--                  <label for="checkbox">-->
@@ -78,6 +78,7 @@
 <!--                  </label>-->
                 </div>
                 <div class="field padding-bottom--24">
+
                   <input type="submit" name="submit" value=" Зарегистрироваться">
                 </div>
 <!--                <div class="field">-->

@@ -2,8 +2,6 @@ from django.contrib import admin
 from .models import *
 
 
-
-
 class  WomenAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'photo', 'time_create', 'photo')
     list_display_link = ('title', 'id', 'photo')
@@ -20,3 +18,4 @@ class CategoryAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Women, WomenAdmin)
 admin.site.register(Category, CategoryAdmin)
+
