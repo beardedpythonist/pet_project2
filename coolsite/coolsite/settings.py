@@ -20,6 +20,9 @@ ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
+LOGIN_REDIRECT_URL = '/index/'
+LOGOUT_REDIRECT_URL = '/index/'
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -30,6 +33,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'women.apps.WomenConfig'
 ]
+
+
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

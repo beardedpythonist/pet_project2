@@ -3,6 +3,7 @@ from django.contrib.auth.forms import *
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.forms import ModelForm, TextInput, Textarea, Select
+from django.utils.translation import gettext as _
 
 from .models import *
 
@@ -10,37 +11,37 @@ from .models import *
 
 class UserRegisterForm(UserCreationForm):
     password1 = forms.CharField(
-        label=("Password"),
+        label=_("Password"),
         strip=False,
         widget=forms.PasswordInput(
             attrs={
                 "autocomplete": "new-password",
-                'class': 'field padding-bottom--24',
+                'class': 'input100',
                 'name': 'password1',
-                'placeholder': 'Введите пароль '
+                'placeholder': 'Enter Password'
             }
         ),
         help_text=password_validation.password_validators_help_text_html(),
     )
     password2 = forms.CharField(
-        label=("Password"),
-        strip=False,
+        label=_("Password confirmation"),
         widget=forms.PasswordInput(
             attrs={
                 "autocomplete": "new-password",
-                'class': 'field padding-bottom--24',
+                'class': 'input100',
                 'name': 'password1',
-                'placeholder': 'Введите пароль '
+                'placeholder': 'Re-Enter Password'
             }
         ),
-        help_text=password_validation.password_validators_help_text_html(),
+        strip=False,
+        help_text=_("Enter the same password as before, for verification."),
     )
     username = forms.CharField(
         widget=forms.TextInput(
             attrs={
-                'class': 'field padding-bottom--24',
+                'class': 'input100',
                 'name': 'password1',
-                'placeholder': 'Введите Имя'
+                'placeholder': 'Enter Username'
             }
         )
     )
@@ -50,26 +51,24 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(
             attrs={
                 'autofocus': True,
-                'class': 'field padding-bottom--24',
+                'class': 'input100',
                 'name': 'password1',
                 'placeholder': 'Enter Username'
             }
         )
     )
     password = forms.CharField(
-        label=("Password"),
+        label=_("Password"),
         strip=False,
         widget=forms.PasswordInput(
             attrs={
                 "autocomplete": "new-password",
-                'class': 'field padding-bottom--24',
+                'class': 'input100',
                 'name': 'password1',
-                'placeholder': 'Введите пароль  '
+                'placeholder': 'Re-Enter Password'
             }
         ),
     )
-
-
 
 class AddPostForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):

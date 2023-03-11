@@ -1,20 +1,22 @@
-from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, DetailView
+from django.views.generic import *
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView
 
 from .utils import *
 from .forms import *
 from .models import *
 
-menu = [{'title': 'На главную страницу', 'url_name': 'home'},
-        {'title': ' О сайте', 'url_name': 'about'},
-        {'title':'Добавить новый блог', 'url_name':'add_page'},
-        {'title':'Авторизация', 'url_name':'login'},
-        {'title': 'Регистрация', 'url_name': 'register'},
-    ]
+menu = [
+        {'title': 'Выйти', 'url_name': 'logout'},
+        {'title': 'О сайте', 'url_name': 'about'},
+        {'title': 'На главную страницу', 'url_name': 'home'},
+        {'title': 'Войти', 'url_name': 'login'},
+        {'title':  'Регистрация', 'url_name': 'register'},
 
+    ]
 
 class WomenHome(DataMixin, ListView):
     model = Women
@@ -62,13 +64,13 @@ class ShowPost(DataMixin, DetailView):
         return context
 
 
-class AddPage(LoginRequiredMixin, DataMixin, CreateView):
-    form_class = AddPostForm
-    template_name = 'women/addpage.html'
-    success_url = reverse_lazy('home')
-    login_url = reverse_lazy('home')
-    raise_exception = True
-
+# class AddPage(LoginRequiredMixin, DataMixin, CreateView):
+#     form_class = AddPostForm
+#     template_name = 'women/addpage.html'
+#     success_url = reverse_lazy('home')
+#     login_url = reverse_lazy('home')
+#     raise_exception = True
+#
 
 
 
@@ -84,12 +86,12 @@ class RegisterView(CreateView):
     model = User
     form_class = UserRegisterForm
     template_name = 'women/register.html'
-    success_url = reverse_lazy('home')
-
-def login(request):
-    return render(request, 'register.html')
+    success_url = reverse_lazy('login')
 
 
+class SignInView(LoginView):
+    form_class = LoginForm
+    template_name = 'women/login.html'
 
 # def create(request):
 #     error = ''

@@ -4,13 +4,17 @@
 		<aside id="colorlib-aside" role="complementary" class="js-fullheight">
 			<nav id="colorlib-main-menu" role="navigation">
 				<ul>
-					{% for m in menu|slice:":1" %}
-					<li class="colorlib-active"><a href=" {% url m.url_name %}">{{ m.title }}</a></li>
-					{% endfor %}
-					{% for m in menu|slice:"1:5" %}
-
-					<li><a href=" {% url m.url_name %} " > {{ m.title }} </a></li>
+					{% if user.is_authenticated %}
+							{% for m in menu|slice:":3" %}
+										<li class="colorlib-active"><a href=" {% url m.url_name %} " > {{ m.title }} </a></li>
 							{% endfor %}
+					 {% else %}
+						{% for m in menu|slice:"1:5" %}
+									<li class="colorlib-active" ><a href=" {% url m.url_name %} " > {{ m.title }} </a></li>
+					{% endfor %}
+
+					{% endif %}
+
 
 				</ul>
 			</nav>

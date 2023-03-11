@@ -44,12 +44,12 @@
       </div>
       <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
         <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-          <h1><a href="http://blog.stackfindover.com/" rel="dofollow">Регистрация </a></h1>
+          <h1><a href="http://blog.stackfindover.com/" rel="dofollow">Авторизация </a></h1>
         </div>
         <div class="formbg-outer">
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
-              <span class="padding-bottom--15">создай свой aккаунт </span>
+              <span class="padding-bottom--15">Войди в свой аакоунт </span>
 
 
                <form  id="stripe-login" method="post">
@@ -63,26 +63,21 @@
                   <div class="grid--50-50">
                     <label for="password">Password</label>
                   </div>
-                  {{ form.password1  }}
+                  {{ form.password  }}
                 </div>
                  <div class="field padding-bottom--24">
                   <div class="grid--50-50">
-                    <label for="password">Repeat Password</label>
+                    <label for="password"></label>
                   </div>
-                  {{ form.password2  }}
-                   {{ form.error_message }}
+
                 </div>
                 <div class="field field-checkbox padding-bottom--24 flex-flex align-center">
-<!--                  <label for="checkbox">-->
-<!--                    <input type="checkbox" name="checkbox"> Stay signed in for a week-->
-<!--                  </label>-->
+
                 </div>
                 <div class="field padding-bottom--24">
                   <input type="submit" name="submit" value=" Зарегистрироваться">
                 </div>
-<!--                <div class="field">-->
-<!--                  <a class="ssolink" href="#">Use single sign-on (Google) instead</a>-->
-<!--                </div>-->
+
                </form>
             </div>
           </div>
