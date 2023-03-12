@@ -17,7 +17,6 @@ menu = [
         {'title': 'На главную страницу', 'url_name': 'home'},
         {'title': 'Войти', 'url_name': 'login'},
         {'title':  'Регистрация', 'url_name': 'register'},
-
     ]
 
 class WomenHome( DataMixin, ListView):
@@ -56,7 +55,6 @@ class CategoryListView(DataMixin, ListView):
         context['cats'] = Category.objects.all()
         return context
 
-
 class ShowPost(DataMixin, FormMixin, DetailView):
     model = Women
     template_name = 'women/single.html'
@@ -64,10 +62,7 @@ class ShowPost(DataMixin, FormMixin, DetailView):
     context_object_name = 'post'
     form_class = CommentForm
 
-
-
     def get_success_url(self, **kwargs):
-
         return reverse_lazy('post', kwargs={'post_slug':self.get_object().slug})
 
     def post(self, request, *args, **kwargs):
@@ -94,10 +89,6 @@ class ShowPost(DataMixin, FormMixin, DetailView):
 
 
 
-def search(request):
-    return render(request, 'women/search-result.html')
-
-
 class RegisterView(CreateView):
     model = User
     form_class = UserRegisterForm
@@ -109,19 +100,7 @@ class SignInView(LoginView):
     form_class = LoginForm
     template_name = 'women/login.html'
 
-# def create(request):
-#     error = ''
-#     if request.method == "POST":
-#         form = TaskForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('home')
-#         else:
-#             error = 'Error'
-#     form = TaskForm()
-#
-#     context ={'form': form, 'error': error}
-#     return render(request, 'main/create.html', context)
+
 
 def add_page(request):
     global  context1
@@ -146,4 +125,19 @@ def add_page(request):
 def about(request):
     context = {'menu': menu}
     return render(request, 'women/about.html', context)
+
+
+# класс сеарч не раотает!!!
+class Search(ListView):
+    paginate_by = 4
+    model = Women
+    template_name = 'women/index.html'
+    def get_queryset(self):
+        return Women.objects.filter(content__icontains=self.request.GET.get('q'))
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['q'] = self.request.GET.get('q')
+        print(context['q'])
+        return context
+
 

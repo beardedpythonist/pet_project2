@@ -10,7 +10,7 @@ urlpatterns = [path('', WomenHome.as_view(), name='home'),
                path('login/', SignInView.as_view(), name='login'),
                path('logout/', LogoutView.as_view(), name='logout'),
                path('post/<slug:post_slug>/', ShowPost.as_view(), name='post'),
-               path('search-result/', search, name='search'),
                path('cats/<slug:cat_slug>/', CategoryListView.as_view(), name='category'),
-                path('about/', about, name='about')        ,
+                path('about/', about, name='about'),
+               path('search/', Search.as_view(), name='search')
                ]
