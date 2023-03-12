@@ -21,6 +21,7 @@ menu = [
     ]
 
 class WomenHome( DataMixin, ListView):
+    paginate_by = 4
     model = Women
     template_name = 'women/index.html'
     context_object_name = 'post'
@@ -41,6 +42,7 @@ class WomenHome( DataMixin, ListView):
 
 
 class CategoryListView(DataMixin, ListView):
+    paginate_by = 4
     model = Women
     template_name = 'women/category.html'
     context_object_name = 'posts'
