@@ -13,7 +13,7 @@ from .models import *
 
 menu = [
         {'title': 'Выйти', 'url_name': 'logout'},
-        {'title': 'О сайте', 'url_name': 'about'},
+        {'title': 'О создателе сайта', 'url_name': 'about'},
         {'title': 'На главную страницу', 'url_name': 'home'},
         {'title': 'Войти', 'url_name': 'login'},
         {'title':  'Регистрация', 'url_name': 'register'},

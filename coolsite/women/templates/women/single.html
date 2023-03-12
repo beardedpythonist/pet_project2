@@ -3,7 +3,7 @@
 
 <html lang="en">
   <head>
-    <title>Andrea - Free Bootstrap 4 Template by Colorlib</title>
+    <title>  {{  post.title }}   </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -112,7 +112,7 @@
 					<h3 class="sidebar-heading">Категории </h3>
 	              <ul class="categories">
 					{% for cat in cats %}
-	                <li><a href="{{ cat.get_absolute_url  }}"> {{ cat.name }}	 <span>(6)</span></a></li>
+	                <li><a href="{{ cat.get_absolute_url  }}"> {{ cat.name }}	 <span>  {{ cat.pk }} </span></a></li>
 
 					  {% endfor %}
 
