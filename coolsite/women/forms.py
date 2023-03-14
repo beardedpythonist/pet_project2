@@ -7,8 +7,6 @@ from django.utils.translation import gettext as _
 
 from .models import *
 
-
-
 class UserRegisterForm(UserCreationForm):
     password1 = forms.CharField(
         label=_("Password"),
@@ -87,7 +85,6 @@ class AddPostForm(forms.ModelForm):
         if len(title) > 200:
             raise ValidationError('Длина превышает 200 символов')
         return title
-
 
 
 class CommentForm(forms.ModelForm):

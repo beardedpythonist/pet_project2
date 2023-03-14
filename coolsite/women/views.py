@@ -6,25 +6,24 @@ from django.contrib.auth.mixins import *
 from django.contrib.auth.models import User
 from django.contrib.auth.views import *
 
-
 from .utils import *
 from .forms import *
 from .models import *
 
 menu = [
-        {'title': 'Выйти', 'url_name': 'logout'},
-        {'title': 'О создателе сайта', 'url_name': 'about'},
-        {'title': 'На главную страницу', 'url_name': 'home'},
-        {'title': 'Войти', 'url_name': 'login'},
-        {'title':  'Регистрация', 'url_name': 'register'},
-    ]
+    {'title': 'Выйти', 'url_name': 'logout'},
+    {'title': 'О создателе сайта', 'url_name': 'about'},
+    {'title': 'На главную страницу', 'url_name': 'home'},
+    {'title': 'Войти', 'url_name': 'login'},
+    {'title': 'Регистрация', 'url_name': 'register'},
+]
 
-class WomenHome( DataMixin, ListView):
+
+class WomenHome(DataMixin, ListView):
     paginate_by = 4
     model = Women
     template_name = 'women/index.html'
     context_object_name = 'post'
-
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -55,6 +54,7 @@ class CategoryListView(DataMixin, ListView):
         context['cats'] = Category.objects.all()
         return context
 
+
 class ShowPost(DataMixin, FormMixin, DetailView):
     model = Women
     template_name = 'women/single.html'
@@ -63,7 +63,7 @@ class ShowPost(DataMixin, FormMixin, DetailView):
     form_class = CommentForm
 
     def get_success_url(self, **kwargs):
-        return reverse_lazy('post', kwargs={'post_slug':self.get_object().slug})
+        return reverse_lazy('post', kwargs={'post_slug': self.get_object().slug})
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
@@ -86,9 +86,6 @@ class ShowPost(DataMixin, FormMixin, DetailView):
         return context
 
 
-
-
-
 class RegisterView(CreateView):
     model = User
     form_class = UserRegisterForm
@@ -101,26 +98,9 @@ class SignInView(LoginView):
     template_name = 'women/login.html'
 
 
-
 def add_page(request):
-    global  context1
-    post = Women.objects.all()
-    if request.method == "POST":
-        form = AddPostForm(request.POST)
+    pass
 
-
-        if form.is_valid():
-            form.save()
-            print(form.cleaned_data)
-            # try:
-            #     Women.objects.create(**form.cleaned_data)
-            #     return redirect('home')
-            # except:
-            #     form.add_error(None, "Ошибка")
-    else:
-        form = AddPostForm()
-        context1 = {'form': form, 'post': post}
-    return render(request, 'women/addpage.html', context1)
 
 def about(request):
     context = {'menu': menu}
@@ -132,12 +112,13 @@ class Search(ListView):
     paginate_by = 4
     model = Women
     template_name = 'women/index.html'
+    context_object_name = 'post'
+
     def get_queryset(self):
         return Women.objects.filter(content__icontains=self.request.GET.get('q'))
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['q'] = self.request.GET.get('q')
-        print(context['q'])
-        return context
 
-
+    # def get_context_data(self, *, object_list=None, **kwargs):
+    #     context = super().get_context_data(* self.request.GET.get('q')*kwargs)
+    #     context['q'] =
+    #     print(context['q'])
+    #     return context
