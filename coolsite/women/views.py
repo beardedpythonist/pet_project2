@@ -107,7 +107,6 @@ def about(request):
     return render(request, 'women/about.html', context)
 
 
-# класс сеарч не раотает!!!
 class Search(ListView):
     paginate_by = 4
     model = Women
