@@ -12,7 +12,6 @@ class Women(models.Model):
     is_published = models.BooleanField(default=True)
     cat = models.ForeignKey('Category', on_delete=models.PROTECT, )
 
-
     class Meta:
         verbose_name_plural = 'Известные женщины'
         ordering = ('cat', 'title')
@@ -23,6 +22,7 @@ class Women(models.Model):
 
     def get_absolute_url(self):
         return reverse('post', kwargs={'post_slug': self.pk})
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100, db_index=True)
@@ -36,19 +36,6 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse('category', kwargs={'cat_slug': self.slug})
 
-
-class Articles(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Владелец статьи', blank=True, null=True)
-    create_date = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=200, verbose_name='Название')
-    text = models.TextField(verbose_name='Текст')
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Статью'
-        verbose_name_plural = 'Статьи'
 
 
 class Comments(models.Model):

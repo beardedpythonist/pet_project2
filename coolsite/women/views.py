@@ -115,10 +115,4 @@ class Search(ListView):
     context_object_name = 'post'
 
     def get_queryset(self):
-        return Women.objects.filter(content__icontains=self.request.GET.get('q'))
-
-    # def get_context_data(self, *, object_list=None, **kwargs):
-    #     context = super().get_context_data(* self.request.GET.get('q')*kwargs)
-    #     context['q'] =
-    #     print(context['q'])
-    #     return context
+        return Women.objects.filter(content__iregex=self.request.GET.get('q'))
