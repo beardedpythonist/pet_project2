@@ -75,13 +75,14 @@
 							  Всего комментариев к  этой статье : {{ post.comments_articles.all.count }}
 							  {% for item in  post.comments_articles.all %}
 							  <ul class="comment-list" >
-
+								  <br>{{ item.author }} {{ item.create_date }}
 							  <li   class="comment">> {{ item.text }} </li>
-								  <br>
 								  <div  class="comment-body" >
-							  {{ item.author }} {{ item.create_date }}
+
 							  			</div>
 							  </ul>
+							  <br>
+							  <hr>
 							  {% endfor %}
 
 						  </form>

@@ -1,4 +1,5 @@
 from rest_framework.generics import RetrieveUpdateAPIView, RetrieveDestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import ReadOnlyModelViewSet
 from women.models import Women, Comments
 from api.serializer import ArtikelSerializer, CommentSerializer
@@ -8,6 +9,7 @@ from api.permissions import IsOwnerOrReadOnly
 class ArtikelRead(ReadOnlyModelViewSet):
     queryset = Women.objects.all()
     serializer_class = ArtikelSerializer
+    permission_classes = (IsAuthenticated, )
 
 
 class IsOwnerOnly(RetrieveUpdateAPIView):

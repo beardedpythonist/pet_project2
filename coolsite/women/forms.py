@@ -1,8 +1,6 @@
-from django import forms
 from django.contrib.auth.forms import *
-from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm, TextInput, Textarea, Select
+from django.forms import  Textarea
 from django.utils.translation import gettext as _
 
 from .models import *
